@@ -421,7 +421,7 @@ section.menu {
         section.menu .menu-list ul .menu-li .main-title span {
           color: #EB5348; }
       section.menu .menu-list ul .menu-li .sub-menu {
-        display: 0;
+        display: none;
         opacity: 0;
         transform: translateY(-110%); }
         section.menu .menu-list ul .menu-li .sub-menu li a {
