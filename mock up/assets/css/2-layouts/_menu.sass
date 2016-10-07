@@ -1,0 +1,31 @@
+section.menu
+  overflow-x: hidden
+  .menu-list
+    max-width: 80%
+    ul
+      list-style: none
+      padding: 0
+      margin-left: 2rem
+      li
+        display: flex
+        justify-content: space-between
+        align-items: center
+        &:first-child
+          margin-bottom: 2rem
+        a
+          display: block
+          text-transform: uppercase
+          font-size: 7.5vh
+          line-height: 7.5vh
+          transform-origin: left
+          +transition(all 300ms ease-in-out)
+
+
+
+          &:hover
+            color: #555
+            transform: scale(1.1)
+            +transition(all 100ms ease-in-out)
+
+        span
+          color: #EB5348
