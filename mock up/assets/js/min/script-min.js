@@ -1,0 +1,1 @@
+!function($){$(".menu-link").on("click",function(n){console.log("huhu")})}(jQuery);

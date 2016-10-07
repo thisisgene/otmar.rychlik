@@ -397,13 +397,13 @@ section.menu {
       list-style: none;
       padding: 0;
       margin-left: 2rem; }
-      section.menu .menu-list ul li {
+      section.menu .menu-list ul .menu-li:first-child {
+        margin-bottom: 2rem; }
+      section.menu .menu-list ul .menu-li .main-title {
         display: flex;
         justify-content: space-between;
         align-items: center; }
-        section.menu .menu-list ul li:first-child {
-          margin-bottom: 2rem; }
-        section.menu .menu-list ul li a {
+        section.menu .menu-list ul .menu-li .main-title a {
           display: block;
           text-transform: uppercase;
           font-size: 7.5vh;
@@ -412,11 +412,18 @@ section.menu {
           -webkit-transition: all 300ms ease-in-out;
           -moz-transition: all 300ms ease-in-out;
           transition: all 300ms ease-in-out; }
-          section.menu .menu-list ul li a:hover {
+          section.menu .menu-list ul .menu-li .main-title a:hover {
             color: #555;
             transform: scale(1.1);
             -webkit-transition: all 100ms ease-in-out;
             -moz-transition: all 100ms ease-in-out;
             transition: all 100ms ease-in-out; }
-        section.menu .menu-list ul li span {
+        section.menu .menu-list ul .menu-li .main-title span {
           color: #EB5348; }
+      section.menu .menu-list ul .menu-li .sub-menu {
+        display: 0;
+        opacity: 0;
+        transform: translateY(-110%); }
+        section.menu .menu-list ul .menu-li .sub-menu li a {
+          text-transform: uppercase;
+          letter-spacing: 0; }
