@@ -1,0 +1,25 @@
+{
+  "name": "app",
+  "version": "0.1.0",
+  "description": "\"Website Otmar Rychlik\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "do test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thisisgene/otmar.rychlik.git"
+  },
+  "author": "Emanuel Donner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thisisgene/otmar.rychlik/issues"
+  },
+  "homepage": "https://github.com/thisisgene/otmar.rychlik#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "method-override": "^2.3.6",
+    "mongoose": "^4.6.3"
+  }
+}
