@@ -7,7 +7,7 @@ var Projects = require('../models/project');
         // authentication routes
 
         // sample api route
-        app.get('/api/nerds', function(req, res) {
+        app.get('/api/projects', function(req, res) {
             // use mongoose to get all projects in the database
             Project.find(function(err, projects) {
 
