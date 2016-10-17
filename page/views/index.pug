@@ -1,0 +1,17 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    base(href='/')
+    title Starter Node and Angular
+    link(rel='stylesheet', href='/css/main.css')
+    script(src='/js/main.js')
+  body(ng-app='sampleApp', ng-controller='ProjectController')
+    .container
+      nav.navbar.navbar-inverse
+        .navbar-header
+          a.navbar-brand(href='/') Otmar Rychlik
+        ul.nav.navbar-nav
+          li
+            a(href='/projects') Projects
+      div(ng-view='')

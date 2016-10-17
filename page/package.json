@@ -1,25 +1,21 @@
 {
-  "name": "app",
-  "version": "0.1.0",
-  "description": "\"Website Otmar Rychlik\"",
+  "name": "starter-node-angular",
   "main": "server.js",
-  "scripts": {
-    "test": "do test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/thisisgene/otmar.rychlik.git"
-  },
-  "author": "Emanuel Donner",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/thisisgene/otmar.rychlik/issues"
-  },
-  "homepage": "https://github.com/thisisgene/otmar.rychlik#readme",
   "dependencies": {
-    "body-parser": "^1.15.2",
-    "express": "^4.14.0",
-    "method-override": "^2.3.6",
-    "mongoose": "^4.6.3"
+    "body-parser": "~1.4.2",
+    "express": "~4.5.1",
+    "jade": "~1.8.1",
+    "method-override": "~2.0.2",
+    "mongoose": "~3.8.0",
+    "pug": "^2.0.0-beta6"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-clean": "^0.3.1",
+    "gulp-concat": "^2.4.2",
+    "gulp-livereload": "^3.0.2",
+    "gulp-minify-css": "^0.3.11",
+    "gulp-nodemon": "^1.0.4",
+    "gulp-uglify": "^1.0.2"
   }
 }
