@@ -1,117 +1,77 @@
 var gulp = require('gulp');
-
-var clean = require('gulp-clean');
-var concat = require('gulp-concat');
-var nodemon = require('gulp-nodemon');
-var livereload = require('gulp-livereload');
-var minifyCss = require('gulp-minify-css');
+var babel = require('gulp-babel');
 var uglify = require('gulp-uglify');
+var sass = require('gulp-sass');
+var sourcemaps = require("gulp-sourcemaps");
+var postcss = require('gulp-postcss');
+var autoprefixer = require('autoprefixer');
+var cssnano = require('cssnano');
+var nodemon = require('gulp-nodemon');
+var path = require('path');
+var concat = require('gulp-concat');
+var browserSync = require('browser-sync');
+var reload = browserSync.reload;
 
-var baseDirs = {
-  app: './',
-  dist: './dist/'
-};
-
-var publicDirs = {
-  _self: 'public/',
-  js: 'public/js/',
-  css: 'public/css/',
-  img: 'public/img/'
-};
-
-var bowerComponentsDir = baseDirs.app + 'bower_components/';
-
-// Bower components first!
-var appFiles = {
-  js: [bowerComponentsDir + '**/*.min.js', baseDirs.app + 'js/**/*.js'],
-  css: [bowerComponentsDir + '**/*.min.css', baseDirs.app + 'css/**/*.css'],
-  index: [baseDirs.app + 'views/index.pug']
-};
-
-var concatFilenames = {
-  js: 'main.js',
-  css: 'main.css'
-};
-
-var startupScript = 'server.js';
-
-var sysDirs = [
-  baseDirs.app + 'app/**/*.js',
-  baseDirs.app + 'config/**/*.js',
-  baseDirs.app + 'views/**/*.pug',
-  baseDirs.app + 'config/**/*.js',
-  baseDirs.app + 'views/**/*.pug',
-  baseDirs.app + 'node_modules/'
-];
-
-gulp.task('clean', function() {
-  return gulp.src(baseDirs.dist, {read: false}).pipe(clean());
+gulp.task('browserSync', ['sass', 'js', 'nodemon'], function() {
+  browserSync({
+    proxy: 'localhost:30666',
+    port: 30808,
+    notify: false
+  });
 });
 
-gulp.task('dev:concatjs', function () {
-  return gulp.src(appFiles.js)
-    .pipe(concat(concatFilenames.js))
-    .pipe(gulp.dest(baseDirs.app + publicDirs.js));
-});
+gulp.task('js', function() {
+  return gulp.src('./js/*.js')
+    .pipe(sourcemaps.init())
 
-gulp.task('dev:concatcss', function () {
-  return gulp.src(appFiles.css)
-    .pipe(concat(concatFilenames.css))
-    .pipe(gulp.dest(baseDirs.app + publicDirs.css));
-});
-
-gulp.task('nodemon', function () {
-  nodemon({
-      script: baseDirs.app + startupScript,
-      ext: 'js',
-      ignore: [
-        baseDirs.app + 'public/',
-        baseDirs.app + 'js/',
-        baseDirs.app + 'css/']
-    })
-    .on('restart', function () {
-      console.log('Magic restarted');
-    });
-});
-
-gulp.task('livereload', ['dev:concatjs', 'dev:concatcss'], function () {
-  return gulp.src(appFiles.index)
-    .pipe(livereload());
-});
-
-gulp.task('watch', function () {
-  livereload.listen();
-  gulp.watch([
-      appFiles.js,
-      appFiles.css,
-      baseDirs.app + '**/*.pug',
-    ], ['livereload'])
-    .on('change', function(event) {
-      console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
-    });
-});
-
-gulp.task('default', ['dev:concatjs', 'dev:concatcss', 'nodemon', 'watch']);
-gulp.task('dist', ['dev:concatjs', 'dev:concatcss', 'dist:minifycss', 'dist:minifyjs', 'dist:copy']);
-
-gulp.task('dist:minifycss', function() {
-  return gulp.src(baseDirs.app + publicDirs.css + concatFilenames.css)
-    .pipe(minifyCss())
-    .pipe(gulp.dest(baseDirs.dist + publicDirs.css));
-});
-
-gulp.task('dist:minifyjs', function() {
-  return gulp.src(baseDirs.app + publicDirs.js + concatFilenames.js)
+    .pipe(concat('main.js'))
     .pipe(uglify())
-    .pipe(gulp.dest(baseDirs.dist + publicDirs.js));
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('./public/js'))
+    .pipe(reload({stream:true}));
 });
 
-gulp.task('dist:copy', function() {
-  // server.js
-  gulp.src(baseDirs.app + '/' + startupScript)
-    .pipe(gulp.dest(baseDirs.dist));
+gulp.task('sass', function() {
+  return gulp.src('./css/main.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(postcss([
+      autoprefixer({browsers: ['last 4 version']}),
+      cssnano(),
+    ]))
+    .pipe(gulp.dest('./public/css'))
+    .pipe(reload({stream:true}));
+});
 
-  // sysDirs
-  gulp.src(sysDirs, {cwd: baseDirs.app + '**'})
-    .pipe(gulp.dest(baseDirs.dist));
+gulp.task('nodemon', function (cb) {
+  var called = false;
+  return nodemon({
+    script: 'server.js',
+    ext: '.js .hbs',
+    ignore: [
+      'public/**/*.js',
+      'node_modules/**/*.js'
+    ],
+    env: {
+      'NODE_ENV': 'development',
+      'PORT': 30666
+    },
+  }).on('start', function () {
+    if (!called) {
+      called = true;
+      cb();
+    }
+  }).on('restart', function () {
+    console.log('Nodemon restarted!');
+  });
+});
+
+
+
+gulp.task('build', ['js', 'sass']);
+
+gulp.task('default', ['sass', 'js', 'browserSync'], function () {
+  gulp.watch('./css/**/**', ['sass']).on('change', reload);
+  gulp.watch('./views/**/*.pug').on('change', reload);
+  gulp.watch('./js/**/*.js', ['js']);
+  gulp.watch('./views/**/*.hbs', reload);
 });
