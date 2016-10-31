@@ -32,6 +32,10 @@
   border-bottom-right-radius: 4px;
 }
 
+.project-list {
+  margin-top: 1rem;
+}
+
 .project-list ul {
   font-family: "Arial";
   font-size: .8rem;
@@ -44,11 +48,31 @@
   line-height: 1.2rem;
 }
 .project-list ul .active {
-  color: #111;
+  color: #1ca;
 }
 
 .sub-list {
   border-left: 1px dashed #aaa;
-  padding-left: .4rem;
-  margin-left: 1rem;
+  padding-left: .8rem;
+  margin-right: .4rem;
+  background: rgba(200,200,200,0.2);
+}
+
+li:before {
+  padding-right: 2px;
+  margin-left: -10px;
+  display: inline-block;
+  width: 8px;
+  content: '';
+}
+
+.has-sub-list--open {
+  color: #444;
+}
+
+.has-sub-list:before {
+  content: '+';
+}
+.has-sub-list--open:before {
+  content: '-';
 }

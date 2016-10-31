@@ -9,21 +9,49 @@
   </div>
   <div class="project-list">
     <ul>
-      <li>Persönlich</li>
-      <li class="active">KUnsThisTOriKer
-        <ul class="sub-list">
-          <li>ArBeiTsleBen</li>
-          <li>UniVersiTäre lehre</li>
-          <li>FOrschUnG</li>
-          <li>KUnsTGesellschAFT</li>
-        </ul>
-      </li>
-      <li>VerleGer</li>
-      <li>KUnsTschriFTsTeller</li>
-      <li>KUrATOr</li>
-      <li>PrODUZenT</li>
-      <li>sAMMler</li>
-      <li>BerATer</li>
+      <template ngFor let-project [ngForOf]="projects">
+        <li *ngIf="!project.hasParent" [ngClass]="project.hasChildren ? 'has-sub-list' : ''">
+          {{project.name}}
+
+          <ul *ngIf="project.hasChildren" class="sub-list">
+            <template ngFor let-subproject [ngForOf]="projects">
+              <li *ngIf="subproject.parentId==project.id" [ngClass]="subproject.hasChildren ? 'has-sub-list' : ''">
+                {{subproject.name}}
+                <ul *ngIf="subproject.hasChildren" class="sub-list">
+                  <template ngFor let-subsubproject [ngForOf]="projects">
+                    <li *ngIf="subsubproject.parentId==subproject.id">
+                      {{subsubproject.name}}
+
+                    </li>
+                  </template>
+                </ul>
+              </li>
+            </template>
+          </ul>
+
+        </li>
+      </template>
+      <!--<li class="has-sub-list">Persönlich</li>-->
+      <!--<li class="has-sub-list&#45;&#45;open">KUnsThisTOriKer-->
+        <!--<ul class="sub-list">-->
+          <!--<li *ngFor="let project of projects" (!project.hasParent)>{{project.name}}</li>-->
+          <!--<li class="has-sub-list&#45;&#45;open active">ArBeiTsleBen-->
+            <!--<ul class="sub-list">-->
+              <!--<li>UniVersiTäre lehre</li>-->
+              <!--<li>KUnsTGesellschAFT</li>-->
+            <!--</ul>-->
+          <!--</li>-->
+          <!--<li class="has-sub-list">UniVersiTäre lehre</li>-->
+          <!--<li>FOrschUnG</li>-->
+          <!--<li class="has-sub-list">KUnsTGesellschAFT</li>-->
+        <!--</ul>-->
+      <!--</li>-->
+      <!--<li class="has-sub-list">VerleGer</li>-->
+      <!--<li>KUnsTschriFTsTeller</li>-->
+      <!--<li class="has-sub-list">KUrATOr</li>-->
+      <!--<li class="has-sub-list">PrODUZenT</li>-->
+      <!--<li>sAMMler</li>-->
+      <!--<li>BerATer</li>-->
     </ul>
   </div>
 </div>
