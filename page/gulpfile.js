@@ -12,6 +12,26 @@ var concat = require('gulp-concat');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 
+var baseDirs = {
+  app: './',
+  dist: './dist/'
+};
+
+var publicDirs = {
+  _self: 'public/',
+  js: 'public/js/',
+  css: 'public/css/',
+  img: 'public/img/'
+};
+
+var bowerComponentsDir = baseDirs.app + 'bower_components/';
+
+var appFiles = {
+  js: [bowerComponentsDir + '**/*.min.js', baseDirs.app + 'js/**/*.js'],
+  css: [bowerComponentsDir + '**/*.css', baseDirs.app + 'css/**/*.css'],
+  index: [baseDirs.app + 'views/index.jade']
+};
+
 gulp.task('browserSync', ['sass', 'js', 'nodemon'], function() {
   browserSync({
     proxy: 'localhost:30666',
@@ -21,7 +41,7 @@ gulp.task('browserSync', ['sass', 'js', 'nodemon'], function() {
 });
 
 gulp.task('js', function() {
-  return gulp.src('./js/*.js')
+  return gulp.src(appFiles.js)
     .pipe(sourcemaps.init())
 
     .pipe(concat('main.js'))
@@ -31,15 +51,21 @@ gulp.task('js', function() {
     .pipe(reload({stream:true}));
 });
 
-gulp.task('sass', function() {
+gulp.task('sass', ['concatcss'], function() {
   return gulp.src('./css/main.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(postcss([
       autoprefixer({browsers: ['last 4 version']}),
       cssnano(),
     ]))
-    .pipe(gulp.dest('./public/css'))
+    .pipe(gulp.dest('./css'))
     .pipe(reload({stream:true}));
+});
+
+gulp.task('concatcss', function () {
+  return gulp.src(appFiles.css)
+    .pipe(concat('main.css'))
+    .pipe(gulp.dest('./public/css'));
 });
 
 gulp.task('nodemon', function (cb) {
@@ -71,7 +97,7 @@ gulp.task('build', ['js', 'sass']);
 
 gulp.task('default', ['sass', 'js', 'browserSync'], function () {
   gulp.watch('./css/**/**', ['sass']).on('change', reload);
-  gulp.watch('./views/**/*.pug').on('change', reload);
-  gulp.watch('./js/**/*.js', ['js']);
+  // gulp.watch('./views/**/*.pug').on('change', reload);
+  gulp.watch('./js/**/*.js', ['js']).on('change', reload);
   gulp.watch('./views/**/*.hbs', reload);
 });

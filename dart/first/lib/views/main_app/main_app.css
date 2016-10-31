@@ -1,0 +1,10 @@
+
+h1 {
+    font-family: 'Avenir Next Condensed', Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+}
+
+app-header {
+    width: 100%;
+    background: #d6d6d6;
+}

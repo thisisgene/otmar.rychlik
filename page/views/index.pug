@@ -2,10 +2,16 @@ doctype html
 html(lang='en')
   head
     meta(charset='UTF-8')
+    meta(name='description', content='Otmar Rychlik')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
     base(href='/')
-    title Starter Node and Angular
-    link(rel='stylesheet', href='/css/main.css')
-    script(src='/js/main.js')
+    title Otmar Rychlik
+
+    link(rel='stylesheet', href='/public/css/main.css', type='text/css')
+    script(src='/public/js/main.js', type='text/javascript')
+
   body(ng-app='sampleApp', ng-controller='ProjectController')
     .container
       nav.navbar.navbar-inverse
