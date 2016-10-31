@@ -15,7 +15,7 @@ import 'package:first/services/project_service.dart';
 )
 class SideBarLeft implements OnInit {
 
-
+  bool isClassVisible = false;
 
   String title = 'Otmar Rychlik';
   List<Project> projects;

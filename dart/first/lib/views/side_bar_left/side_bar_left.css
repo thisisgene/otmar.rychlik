@@ -44,10 +44,14 @@
   color: #7e7e7e;
 
 }
-.project-list ul {
+.project-list ul li {
   line-height: 1.2rem;
+  cursor: pointer;
 }
-.project-list ul .active {
+.project-list ul li:hover {
+  color: #333;
+}
+.project-list ul li .active {
   color: #1ca;
 }
 
@@ -75,4 +79,11 @@ li:before {
 }
 .has-sub-list--open:before {
   content: '-';
+}
+
+.has-sub-list .sub-list {
+  display: none;
+}
+.has-sub-list.is-open > .sub-list {
+  display: block;
 }

@@ -10,7 +10,7 @@
   <div class="project-list">
     <ul>
       <template ngFor let-project [ngForOf]="projects">
-        <li *ngIf="!project.hasParent" [ngClass]="project.hasChildren ? 'has-sub-list' : ''">
+        <li *ngIf="!project.hasParent" [ngClass]="project.hasChildren ? 'has-sub-list' : ''" [class.is-open]="isClassVisible" (click)="isClassVisible = !isClassVisible;">
           {{project.name}}
 
           <ul *ngIf="project.hasChildren" class="sub-list">
