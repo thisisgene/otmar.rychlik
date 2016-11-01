@@ -1,4 +1,5 @@
 <app-header></app-header>
 <main>
-  <side-bar-left></side-bar-left>
+  <side-bar-left (myEvent)="getId($event)"></side-bar-left>
+  <project-content [project]="selectedProject"></project-content>
 </main>

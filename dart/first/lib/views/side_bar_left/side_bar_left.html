@@ -13,7 +13,7 @@
         <li *ngIf="!project.hasParent" [ngClass]="project.hasChildren ? 'has-sub-list' : ''">
           <div class="list-main-content">
             <i class="icon material-icons" *ngIf="project.hasChildren">add_circle_outline</i>
-            <a id={{project.id}} class="project-element">{{project.name}}</a>
+            <a id={{project.id}} class="project-element" (click)="selectProject(project)">{{project.name}}</a>
 
             <div class="edit-icons">
               <i class="icon-edit material-icons">create</i>

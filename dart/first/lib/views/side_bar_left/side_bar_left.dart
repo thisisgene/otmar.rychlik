@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'dart:html';
 import 'package:angular2/angular2.dart';
+import 'package:first/views/project_content/project_content.dart';
 
 import 'package:first/models/project.dart';
 import 'package:first/services/project_service.dart';
@@ -11,6 +12,7 @@ import 'package:first/services/project_service.dart';
 @Component(selector: 'side-bar-left',
     templateUrl: 'side_bar_left.html',
     styleUrls: const ['side_bar_left.css'],
+    directives: const [ProjectContent],
     providers: const [ProjectService]
 )
 class SideBarLeft implements OnInit {
@@ -22,6 +24,14 @@ class SideBarLeft implements OnInit {
 
   Project selectedProject;
 
+  @Output() EventEmitter<String> myEvent = new EventEmitter();
+
+  void selectProject(project) {
+
+
+    myEvent.emit(project);
+  }
+
   void listenToClick() {
 
     querySelector('.project-list').onClick.listen((MouseEvent e) {
@@ -30,6 +40,9 @@ class SideBarLeft implements OnInit {
       if (target.classes.contains('project-element')){
         querySelectorAll('.active').classes.remove('active');
         target.classes.add('active');
+
+
+
       }
       if (target.classes.contains('icon')){
         target.parent.parent.classes.toggle('is-open');
