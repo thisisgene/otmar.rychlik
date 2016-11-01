@@ -32,11 +32,15 @@
   border-bottom-right-radius: 4px;
 }
 
-.project-list {
+.project-list-wrapper {
   margin-top: 1rem;
 }
 
-.project-list ul {
+.project-list a {
+  display: inline-block;
+}
+
+.project-list {
   font-family: "Arial";
   font-size: .8rem;
   list-style: none;
@@ -44,46 +48,72 @@
   color: #7e7e7e;
 
 }
-.project-list ul li {
-  line-height: 1.2rem;
+.project-list li {
   cursor: pointer;
 }
-.project-list ul li:hover {
+.project-element:hover {
   color: #333;
 }
-.project-list ul li .active {
+.project-list li .active {
   color: #1ca;
 }
 
 .sub-list {
   border-left: 1px dashed #aaa;
-  padding-left: .8rem;
+  padding-left: 1rem;
   margin-right: .4rem;
   background: rgba(200,200,200,0.2);
 }
 
-li:before {
-  padding-right: 2px;
-  margin-left: -10px;
+.list-main-content {
   display: inline-block;
-  width: 8px;
-  content: '';
+  font-size: .8rem;
+}
+
+.icon {
+  position: relative;
+  top: .1rem;
+  display: inline-block;
+  margin-left: -14px;
+  margin-right: -2px;
+  font-size: inherit;
+  line-height: inherit;
+}
+.icon:hover {
+  color: #3a5;
+  transform: scale(1.1);
 }
 
 .has-sub-list--open {
   color: #444;
 }
 
-.has-sub-list:before {
-  content: '+';
-}
-.has-sub-list--open:before {
-  content: '-';
-}
-
 .has-sub-list .sub-list {
   display: none;
 }
-.has-sub-list.is-open > .sub-list {
+.is-open > .sub-list {
   display: block;
+}
+
+.edit-icons {
+  display: inline-block;
+  position: relative;
+  top: .1rem;
+  margin-left: .4rem;
+  opacity: 0;
+}
+.project-list li .list-main-content:hover .edit-icons {
+  opacity: 1;
+}
+.edit-icons .material-icons {
+  font-size: inherit;
+}
+.edit-icons .icon-edit:hover {
+  color: #6f6;
+}
+.edit-icons .icon-delete:hover {
+  color: #f66;
+}
+.edit-icons .icon-add:hover {
+  color: #66f;
 }

@@ -22,18 +22,41 @@ class SideBarLeft implements OnInit {
 
   Project selectedProject;
 
+  void listenToClick() {
+
+    querySelector('.project-list').onClick.listen((MouseEvent e) {
+
+      Element target = e.target;
+      if (target.classes.contains('project-element')){
+        querySelectorAll('.active').classes.remove('active');
+        target.classes.add('active');
+      }
+      if (target.classes.contains('icon')){
+        target.parent.parent.classes.toggle('is-open');
+      }
+    });
+
+  }
+
+  void addClassOpen(MouseEvent e) {
+    print('detail=${e.detail}');
+    print('offset=${e.offset}');
+    print('client=${e.client}');
+    print('layer=${e.layer}');
+    print('screen=${e.target}');
+  }
+
   final ProjectService _projectService;
   SideBarLeft(this._projectService);
 
 
   Future<Null> getProjects() async {
-    print('jafj');
     projects = await _projectService.getProjects();
-    print(projects);
   }
 
   void ngOnInit() {
     getProjects();
+    listenToClick();
   }
 
   void onSelect(Project project) {

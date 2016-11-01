@@ -7,21 +7,44 @@
       <i class="material-icons">add</i>
     </button>
   </div>
-  <div class="project-list">
-    <ul>
+  <div class="project-list-wrapper">
+    <ul class="project-list">
       <template ngFor let-project [ngForOf]="projects">
-        <li *ngIf="!project.hasParent" [ngClass]="project.hasChildren ? 'has-sub-list' : ''" [class.is-open]="isClassVisible" (click)="isClassVisible = !isClassVisible;">
-          {{project.name}}
+        <li *ngIf="!project.hasParent" [ngClass]="project.hasChildren ? 'has-sub-list' : ''">
+          <div class="list-main-content">
+            <i class="icon material-icons" *ngIf="project.hasChildren">add_circle_outline</i>
+            <a id={{project.id}} class="project-element">{{project.name}}</a>
 
-          <ul *ngIf="project.hasChildren" class="sub-list">
+            <div class="edit-icons">
+              <i class="icon-edit material-icons">create</i>
+              <i class="icon-delete material-icons">delete</i>
+              <i class="icon-add material-icons">add_box</i>
+            </div>
+          </div>
+          <ul *ngIf="project.hasChildren" class="project-list sub-list">
             <template ngFor let-subproject [ngForOf]="projects">
               <li *ngIf="subproject.parentId==project.id" [ngClass]="subproject.hasChildren ? 'has-sub-list' : ''">
-                {{subproject.name}}
-                <ul *ngIf="subproject.hasChildren" class="sub-list">
+                <div class="list-main-content">
+                  <i class="icon material-icons" *ngIf="subproject.hasChildren">add_circle_outline</i>
+                  <a id={{subproject.id}} class="project-element">{{subproject.name}}</a>
+                  <div class="edit-icons">
+                    <i class="icon-edit material-icons">create</i>
+                    <i class="icon-delete material-icons">delete</i>
+                    <i class="icon-add material-icons">add_box</i>
+                  </div>
+                </div>
+                <ul *ngIf="subproject.hasChildren" class="project-list sub-list">
                   <template ngFor let-subsubproject [ngForOf]="projects">
                     <li *ngIf="subsubproject.parentId==subproject.id">
-                      {{subsubproject.name}}
-
+                      <div class="list-main-content">
+                        <i class="icon material-icons" *ngIf="subsubproject.hasChildren">add_circle_outline</i>
+                        <a id={{subsubproject.id}} class="project-element">{{subsubproject.name}}</a>
+                        <div class="edit-icons">
+                          <i class="icon-edit material-icons">create</i>
+                          <i class="icon-delete material-icons">delete</i>
+                          <i class="icon-add material-icons">add_box</i>
+                        </div>
+                      </div>
                     </li>
                   </template>
                 </ul>
