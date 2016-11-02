@@ -19,8 +19,14 @@ class ProjectContent implements OnInit {
   @Input()
   Project project;
 
-  void ngOnInit() {
-    print('hallo $project');
+  void menuClick(){
+    querySelectorAll('.menu-item').onClick.listen((MouseEvent e) {
+      Element target = e.target;
+      print('hallo');
+    });
   }
 
+  void ngOnInit() {
+    menuClick;
+  }
 }

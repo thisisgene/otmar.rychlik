@@ -26,7 +26,7 @@
               <li *ngIf="subproject.parentId==project.id" [ngClass]="subproject.hasChildren ? 'has-sub-list' : ''">
                 <div class="list-main-content">
                   <i class="icon material-icons" *ngIf="subproject.hasChildren">add_circle_outline</i>
-                  <a id={{subproject.id}} class="project-element">{{subproject.name}}</a>
+                  <a id={{subproject.id}} class="project-element" (click)="selectProject(subproject)">{{subproject.name}}</a>
                   <div class="edit-icons">
                     <i class="icon-edit material-icons">create</i>
                     <i class="icon-delete material-icons">delete</i>
@@ -38,7 +38,7 @@
                     <li *ngIf="subsubproject.parentId==subproject.id">
                       <div class="list-main-content">
                         <i class="icon material-icons" *ngIf="subsubproject.hasChildren">add_circle_outline</i>
-                        <a id={{subsubproject.id}} class="project-element">{{subsubproject.name}}</a>
+                        <a id={{subsubproject.id}} class="project-element" (click)="selectProject(subsubproject)">{{subsubproject.name}}</a>
                         <div class="edit-icons">
                           <i class="icon-edit material-icons">create</i>
                           <i class="icon-delete material-icons">delete</i>

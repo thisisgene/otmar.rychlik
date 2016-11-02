@@ -1,5 +1,6 @@
 .sidebar-left {
   width: 300px;
+  height: 70vh;
   border-right: 1px solid #ccc;
   padding: 0 .5rem;
   box-sizing: border-box;
@@ -41,7 +42,7 @@
 }
 
 .project-list {
-  font-family: "Arial";
+  font-family: "Helvetica Neue", Arial, sans-serif;
   font-size: .8rem;
   list-style: none;
   text-transform: uppercase;
