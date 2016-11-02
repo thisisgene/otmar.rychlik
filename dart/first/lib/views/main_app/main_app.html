@@ -2,5 +2,5 @@
 <main>
   <side-bar-left (myEvent)="getId($event)"></side-bar-left>
   <project-content [project]="selectedProject"></project-content>
-  <div class="side-bar-right"></div>
+  <side-bar-right [project]="selectedProject"></side-bar-right>
 </main>

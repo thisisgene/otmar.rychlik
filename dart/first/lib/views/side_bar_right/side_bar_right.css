@@ -1,0 +1,119 @@
+.sidebar-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.divider {
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  border-bottom: 1px solid #ddd;
+  width: 80%;
+  margin-top: 2rem;
+}
+
+.layout-wrapper {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2rem;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 .4rem;
+  opacity: .5;
+  cursor: pointer;
+}
+.layout:hover {
+  opacity: .7;
+}
+.layout.layout__active {
+  opacity: 1;
+}
+
+.layout__active .layout__img {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+.layout__img {
+  width: 80px;
+  height: 55px;
+  background: #ddd;
+  border: 2px solid #aaa;
+  margin-bottom: .2rem;
+}
+
+.layout__desc {
+  font-family: 'Avenir Next Condensed', Roboto, Helvetica, Arial, sans-serif;
+  font-size: .8rem;
+  text-transform: uppercase;
+}
+
+
+.save-wrapper .title-small {
+  margin-top: .5rem;
+}
+
+.button-wrapper {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.button {
+  display: inline-block;
+  background: #bbb;
+  width: 100px;
+  margin: 0 .8rem;
+  text-align: center;
+  color: white;
+  text-transform: uppercase;
+  padding: .2rem .4rem;
+  font-size: 1.1rem;
+  font-weight: 300;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, .4);
+  cursor: pointer;
+}
+.button:hover {
+  box-shadow: 0 3px 7px rgba(0, 0, 0, .5);
+}
+.button:active {
+  box-shadow: 0 0 2px rgba(0, 0, 0, .5);
+}
+
+.button__save {
+  background: #63BEFF;
+}
+
+/*      INFO_BOX      */
+
+.info-box {
+  width: 85%;
+  background: #FFF5CC;
+  height: 150px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  padding: 1rem;
+  box-sizing: border-box;
+}
+.info-box p {
+  margin: .2rem 0;
+  line-height: 1rem;
+  font-size: .9rem;
+  color: #444;
+}

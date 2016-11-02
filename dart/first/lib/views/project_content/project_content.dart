@@ -33,7 +33,8 @@ class ProjectContent implements OnInit {
         else if (target.classes.contains('menu-item__img')) {
           querySelector('.text-wrapper').classes.remove('visible');
           querySelector('.img-wrapper').classes.add('visible');
-        }      }
+        }
+      }
     });
   }
 

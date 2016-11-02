@@ -19,6 +19,7 @@ main {
 side-bar-left {
   flex-grow: 1;
   max-width: 300px;
+  border-right: 1px solid #ccc;
 }
 
 project-content {
@@ -26,10 +27,9 @@ project-content {
   flex-grow: 2;
 }
 
-.side-bar-right {
+side-bar-right {
   flex-grow: 1;
-  height: 300px;
   min-width: 250px;
   max-width: 300px;
-  background: #11ccaa;
+  border-left: 1px solid #ccc;
 }
