@@ -20,13 +20,24 @@ class ProjectContent implements OnInit {
   Project project;
 
   void menuClick(){
-    querySelectorAll('.menu-item').onClick.listen((MouseEvent e) {
+    querySelector('.menu-selection').onClick.listen((MouseEvent e) {
       Element target = e.target;
-      print('hallo');
+      if (!target.classes.contains('menu-item__active')) {
+        querySelectorAll('.menu-item__active').classes.remove('menu-item__active');
+        target.classes.add('menu-item__active');
+
+        if (target.classes.contains('menu-item__text')) {
+          querySelector('.text-wrapper').classes.add('visible');
+          querySelector('.img-wrapper').classes.remove('visible');
+        }
+        else if (target.classes.contains('menu-item__img')) {
+          querySelector('.text-wrapper').classes.remove('visible');
+          querySelector('.img-wrapper').classes.add('visible');
+        }      }
     });
   }
 
   void ngOnInit() {
-    menuClick;
+    menuClick();
   }
 }

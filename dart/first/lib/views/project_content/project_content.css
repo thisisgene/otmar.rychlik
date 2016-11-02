@@ -17,6 +17,7 @@
   color: #999;
   text-align: center;
   font-size: 1.3rem;
+  cursor: pointer;
 }
 .menu-item__active {
   background: #63BEFF;
@@ -29,6 +30,10 @@
   margin: 1rem auto;
   display: none;
 }
+.text-wrapper.visible {
+  display: block;
+}
+
 .text-wrapper textarea {
   width: 100%;
   height: 70vh;
@@ -45,6 +50,10 @@
 
 .img-wrapper {
   margin: 1rem auto;
+  display: none;
+}
+.img-wrapper.visible {
+  display: block;
 }
 
 .img-wrapper .dropbox {
