@@ -7,6 +7,8 @@
   box-sizing: border-box;
 }
 
+
+
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -39,6 +41,11 @@
   cursor: pointer;
   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
+  -webkit-transition: all 200ms ease-in-out;
+  -moz-transition: all 200ms ease-in-out;
+  -ms-transition: all 200ms ease-in-out;
+  -o-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
 }
 .layout:hover {
   opacity: .7;
@@ -112,6 +119,11 @@
   font-weight: 300;
   box-shadow: 0 3px 3px rgba(0, 0, 0, .4);
   cursor: pointer;
+  -webkit-transition: all 100ms ease-in-out;
+  -moz-transition: all 100ms ease-in-out;
+  -ms-transition: all 100ms ease-in-out;
+  -o-transition: all 100ms ease-in-out;
+  transition: all 100ms ease-in-out;
 }
 .button:hover {
   box-shadow: 0 3px 7px rgba(0, 0, 0, .5);

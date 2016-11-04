@@ -18,6 +18,14 @@
   text-align: center;
   font-size: 1.3rem;
   cursor: pointer;
+  -webkit-transition: all 200ms ease-in-out;
+  -moz-transition: all 200ms ease-in-out;
+  -ms-transition: all 200ms ease-in-out;
+  -o-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+}
+.menu-item:hover {
+  color: white;
 }
 .menu-item__active {
   background: #63BEFF;
