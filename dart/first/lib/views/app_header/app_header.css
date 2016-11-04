@@ -2,7 +2,7 @@ header {
   padding: 0 10px;
   /*width: 100%;*/
   background: #d6d6d6;
-  border-bottom: 1px solid #aaa;
+  /*border-bottom: 1px solid #aaa;*/
 }
 
 .horiz {
@@ -24,7 +24,7 @@ h1, h2, h3 {
 }
 
 .nav-subtitle {
-  color: #555;
+  color: #aaa;
 }
 
 .login-wrapper {
