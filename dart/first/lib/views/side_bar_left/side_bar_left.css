@@ -69,7 +69,7 @@
   font-size: .8rem;
 }
 
-.icon {
+.icon-hasChildren {
   position: relative;
   top: .1rem;
   display: inline-block;
@@ -78,7 +78,7 @@
   font-size: inherit;
   line-height: inherit;
 }
-.icon:hover {
+.icon-hasChildren:hover {
   color: #3a5;
   transform: scale(1.1);
 }

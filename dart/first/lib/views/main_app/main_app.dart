@@ -22,7 +22,6 @@ class MainApp {
 
 
   void getId(Project project) {
-    print(project.name);
     selectedProject = project;
   }
 }

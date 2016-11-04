@@ -11,3 +11,6 @@ class AppHeader {
 //
 //  AppHeader(FirebaseService this.fbService);
 }
+
+
+// TODO Login, auth, etc.

@@ -41,11 +41,18 @@ class SideBarLeft implements OnInit {
         querySelectorAll('.active').classes.remove('active');
         target.classes.add('active');
 
-
-
       }
-      if (target.classes.contains('icon')){
+      if (target.classes.contains('icon-hasChildren')){
         target.parent.parent.classes.toggle('is-open');
+      }
+      if (target.classes.contains('icon-edit')){
+        print('uhu');
+      }
+      if (target.classes.contains('icon-edit')){
+        print('uhu');
+      }
+      if (target.classes.contains('icon-edit')){
+        print('uhu');
       }
     });
 
@@ -70,6 +77,8 @@ class SideBarLeft implements OnInit {
   void ngOnInit() {
     getProjects();
     listenToClick();
+
+
   }
 
   void onSelect(Project project) {
@@ -88,4 +97,7 @@ class SideBarLeft implements OnInit {
   }
 
 
+
 }
+
+//TODO: adding, editing and removing projects
