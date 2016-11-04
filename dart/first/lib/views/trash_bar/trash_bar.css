@@ -1,0 +1,32 @@
+.trash-bar-wrapper {
+  border-left: 2px solid #aaa;
+  height: 300px;
+  background: #e8e8e8;
+}
+.trash-icon-wrapper {
+  position: absolute;
+  top: 30px;
+  left: -20px;
+  width: 25px;
+  height: 50px;
+  background: #e8e8e8;
+  border: 2px solid #aaa;
+  border-right: none;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.trash-icon-wrapper i {
+  color: #bbb;
+}
+
+.trash-icon-wrapper:hover {
+  left: -25px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+}
+.trash-icon-wrapper:hover i {
+  color: #aaa;
+}

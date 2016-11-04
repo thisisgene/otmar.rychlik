@@ -14,6 +14,7 @@ main {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  overflow-x: hidden;
 }
 
 side-bar-left {
@@ -32,4 +33,23 @@ side-bar-right {
   min-width: 250px;
   max-width: 300px;
   border-left: 1px solid #ccc;
+}
+
+trash-bar {
+  position: absolute;
+  top: 33px;
+  right: -298px;
+  width: 300px;
+  min-height: 400px;
+  -webkit-transition: all 400ms ease-in-out;
+  -moz-transition: all 400ms ease-in-out;
+  -ms-transition: all 400ms ease-in-out;
+  -o-transition: all 400ms ease-in-out;
+  transition: all 400ms ease-in-out;
+}
+trash-bar.expand {
+  right: 0px;
+}
+trash-bar.expand .trash-bar-wrapper .trash-icon-wrapper {
+  left: -25px;
 }

@@ -5,6 +5,7 @@ import 'package:first/views/app_header/app_header.dart';
 import 'package:first/views/side_bar_left/side_bar_left.dart';
 import 'package:first/views/project_content/project_content.dart';
 import 'package:first/views/side_bar_right/side_bar_right.dart';
+import 'package:first/views/trash_bar/trash_bar.dart';
 import 'package:first/models/project.dart';
 import 'package:first/services/project_service.dart';
 
@@ -14,7 +15,7 @@ import 'package:first/services/project_service.dart';
     templateUrl: 'main_app.html',
     selector: 'main-app',
     styleUrls: const ['main_app.css'],
-    directives: const [AppHeader, SideBarLeft, ProjectContent, SideBarRight],
+    directives: const [AppHeader, SideBarLeft, ProjectContent, SideBarRight, TrashBar],
     providers: const [ProjectService])
 class MainApp {
 
