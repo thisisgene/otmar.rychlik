@@ -37,13 +37,16 @@
 .text-wrapper {
   margin: 1rem auto;
   display: none;
+  text-align: center;
 }
 .text-wrapper.visible {
   display: block;
 }
 
 .text-wrapper textarea {
+  margin: 0 auto;
   width: 100%;
+  max-width: 500px;
   height: 70vh;
   resize: none;
   font-family: "Helvetica Neue", Arial, sans-serif;

@@ -20,6 +20,9 @@ import 'package:first/services/tooltip_service.dart';
     directives: const [AppHeader, SideBarLeft, ProjectContent, SideBarRight, TrashBar],
     providers: const [ProjectService, TooltipService])
 
+
+
+
 class MainApp implements OnInit{
 
   Project selectedProject;
@@ -33,6 +36,7 @@ class MainApp implements OnInit{
     selectedProject = project;
   }
 
+
   void checkForTooltip() {
     Element infoHeader = querySelector('.info-header');
     Element infoText = querySelector('.info-text');
@@ -43,7 +47,7 @@ class MainApp implements OnInit{
       tooltips.forEach((element) {
         if (element.name == tooltipName) {
           infoHeader.text = element.header;
-          infoText.text = element.content;
+          infoText.setInnerHtml(element.content, treeSanitizer: new NullTreeSanitizer());
         }
       });
     });
@@ -63,3 +67,6 @@ class MainApp implements OnInit{
 
 }
 
+class NullTreeSanitizer implements NodeTreeSanitizer {
+  void sanitizeTree(Node node) {}
+}
