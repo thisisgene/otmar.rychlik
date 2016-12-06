@@ -34,6 +34,7 @@ class MainApp implements OnInit{
   }
 
   void checkForTooltip() {
+    Element infoHeader = querySelector('.info-header');
     Element infoText = querySelector('.info-text');
 
     querySelectorAll('.has-tooltip').onMouseEnter.listen((MouseEvent e) {
@@ -41,6 +42,7 @@ class MainApp implements OnInit{
       String tooltipName = tooltipElement.dataset['tooltip'];
       tooltips.forEach((element) {
         if (element.name == tooltipName) {
+          infoHeader.text = element.header;
           infoText.text = element.content;
         }
       });

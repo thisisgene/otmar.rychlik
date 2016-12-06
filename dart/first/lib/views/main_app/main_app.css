@@ -3,6 +3,12 @@ h1 {
   font-weight: 400;
 }
 
+.main-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 app-header {
   width: 100%;
   background: #d6d6d6;
@@ -14,6 +20,7 @@ main {
   flex-direction: row;
   justify-content: space-between;
   overflow-x: hidden;
+  flex-grow: 1;
 }
 
 side-bar-left {

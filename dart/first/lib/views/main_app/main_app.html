@@ -1,8 +1,10 @@
-<app-header></app-header>
-<main>
-  <side-bar-left (myEvent)="getId($event)"></side-bar-left>
-  <project-content [project]="selectedProject"></project-content>
-  <side-bar-right [project]="selectedProject"></side-bar-right>
+<div class='main-container'>
+  <app-header></app-header>
+  <main>
+    <side-bar-left (myEvent)="getId($event)"></side-bar-left>
+    <project-content [project]="selectedProject"></project-content>
+    <side-bar-right [project]="selectedProject"></side-bar-right>
 
-</main>
-<trash-bar></trash-bar>
+  </main>
+  <trash-bar></trash-bar>
+</div>
