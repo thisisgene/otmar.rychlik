@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'dart:html';
+
+import 'package:dnd/dnd.dart';
+
 import 'package:angular2/angular2.dart';
 import 'package:first/views/project_content/project_content.dart';
 
@@ -24,10 +27,39 @@ class SideBarLeft implements OnInit {
   List<Project> projects;
   Project selectedProject;
 
+
+
   @Output() EventEmitter<String> myEvent = new EventEmitter();
+
+  main() {
+    // Install same elements as draggable and dropzone.
+    Draggable draggable = new Draggable(querySelectorAll('.sortable'),
+        avatarHandler: new AvatarHandler.clone());
+
+    Dropzone dropzone = new Dropzone(querySelectorAll('.sortable'));
+
+    // Swap elements when dropped.
+    dropzone.onDrop.listen((DropzoneEvent event) {
+      print('asdf');
+      swapElements(event.draggableElement, event.dropzoneElement);
+    });
+  }
 
   void selectProject(project) {
     myEvent.emit(project);
+  }
+
+
+
+  void swapElements(Element elm1, Element elm2) {
+    print('isdragged');
+    var parent1 = elm1.parent;
+    var next1   = elm1.nextElementSibling;
+    var parent2 = elm2.parent;
+    var next2   = elm2.nextElementSibling;
+
+    parent1.insertBefore(elm2, next1);
+    parent2.insertBefore(elm1, next2);
   }
 
   void listenToClick() {

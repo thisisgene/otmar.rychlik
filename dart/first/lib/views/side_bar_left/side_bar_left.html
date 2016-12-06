@@ -10,7 +10,7 @@
   <div class="project-list-wrapper">
     <ul class="project-list">
       <template ngFor let-project [ngForOf]="projects">
-        <li *ngIf="!project.hasParent" [ngClass]="project.hasChildren ? 'has-sub-list' : ''">
+        <li class="sortable" *ngIf="!project.hasParent" [ngClass]="project.hasChildren ? 'has-sub-list' : ''">
           <div class="list-main-content">
             <i class="icon-hasChildren material-icons" *ngIf="project.hasChildren">add_circle_outline</i>
             <a id={{project.id}} class="project-element" (click)="selectProject(project)">{{project.name}}</a>
