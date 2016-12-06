@@ -18,5 +18,6 @@ class TrashBar {
 
   void expandTrash() {
     querySelector('trash-bar').classes.toggle('expand');
+    querySelector('.trash-icon-wrapper').classes.toggle('expand');
   }
 }

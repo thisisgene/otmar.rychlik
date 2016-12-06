@@ -37,18 +37,15 @@ side-bar-right {
 trash-bar {
   position: absolute;
   top: 53px;
-  right: -398px;
-  width: 400px;
+  right: -598px;
+  width: 600px;
   min-height: 400px;
-  -webkit-transition: all 400ms ease-in-out;
-  -moz-transition: all 400ms ease-in-out;
-  -ms-transition: all 400ms ease-in-out;
-  -o-transition: all 400ms ease-in-out;
-  transition: all 400ms ease-in-out;
+  -webkit-transition: all 300ms ease-in-out;
+  -moz-transition: all 300ms ease-in-out;
+  -ms-transition: all 300ms ease-in-out;
+  -o-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
 }
 trash-bar.expand {
   right: 0px;
-}
-trash-bar.expand .trash-bar-wrapper .trash-icon-wrapper {
-  left: -25px;
 }
