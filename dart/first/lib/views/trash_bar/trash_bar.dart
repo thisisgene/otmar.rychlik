@@ -17,6 +17,6 @@ import 'package:first/services/project_service.dart';
 class TrashBar {
 
   void expandTrash() {
-    querySelector('trash-bar').classes.add('expand');
+    querySelector('trash-bar').classes.toggle('expand');
   }
 }
