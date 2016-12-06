@@ -20,15 +20,13 @@ class SideBarLeft implements OnInit {
   bool isClassVisible = false;
 
   String title = 'Otmar Rychlik';
-  List<Project> projects;
 
+  List<Project> projects;
   Project selectedProject;
 
   @Output() EventEmitter<String> myEvent = new EventEmitter();
 
   void selectProject(project) {
-
-
     myEvent.emit(project);
   }
 
@@ -45,25 +43,7 @@ class SideBarLeft implements OnInit {
       if (target.classes.contains('icon-hasChildren')){
         target.parent.parent.classes.toggle('is-open');
       }
-      if (target.classes.contains('icon-edit')){
-        print('uhu');
-      }
-      if (target.classes.contains('icon-edit')){
-        print('uhu');
-      }
-      if (target.classes.contains('icon-edit')){
-        print('uhu');
-      }
     });
-
-  }
-
-  void addClassOpen(MouseEvent e) {
-    print('detail=${e.detail}');
-    print('offset=${e.offset}');
-    print('client=${e.client}');
-    print('layer=${e.layer}');
-    print('screen=${e.target}');
   }
 
   final ProjectService _projectService;
@@ -77,25 +57,32 @@ class SideBarLeft implements OnInit {
   void ngOnInit() {
     getProjects();
     listenToClick();
-
-
   }
 
   void onSelect(Project project) {
     selectedProject = project;
   }
 
-  void makeActive() {
-    querySelectorAll('li')
-      ..onClick.listen((event) => clickList(event, 'hallo'));
-    print(querySelectorAll('li'));
 
-  }
+  //  void addClassOpen(MouseEvent e) {
+//    print('detail=${e.detail}');
+//    print('offset=${e.offset}');
+//    print('client=${e.client}');
+//    print('layer=${e.layer}');
+//    print('screen=${e.target}');
+//  }
 
-  void clickList(MouseEvent mouseEvent, String s) {
-    print(s);
-  }
-
+//  void makeActive() {
+//    querySelectorAll('li')
+//      ..onClick.listen((event) => clickList(event, 'hallo'));
+//    print(querySelectorAll('li'));
+//
+//  }
+//
+//  void clickList(MouseEvent mouseEvent, String s) {
+//    print(s);
+//  }
+//
 
 
 }

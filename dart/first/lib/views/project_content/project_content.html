@@ -4,8 +4,9 @@
     <a class="menu-item menu-item__text menu-item__active">TEXT</a>
     <a class="menu-item menu-item__img">BILDER</a>
   </div>
-  <div *ngIf="project != null">
-    <div class="text-wrapper visible">
+
+  <div class="text-wrapper visible has-tooltip" data-tooltip="markup">
+    <div *ngIf="project != null">
       <textarea>{{project.contentTextMD}}</textarea>
     </div>
   </div>
