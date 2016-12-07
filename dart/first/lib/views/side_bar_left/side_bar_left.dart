@@ -31,36 +31,23 @@ class SideBarLeft implements OnInit {
 
   @Output() EventEmitter<String> myEvent = new EventEmitter();
 
-  main() {
-    // Install same elements as draggable and dropzone.
-    Draggable draggable = new Draggable(querySelectorAll('.sortable'),
-        avatarHandler: new AvatarHandler.clone());
 
-    Dropzone dropzone = new Dropzone(querySelectorAll('.sortable'));
+  void addProject() {
 
-    // Swap elements when dropped.
-    dropzone.onDrop.listen((DropzoneEvent event) {
-      print('asdf');
-      swapElements(event.draggableElement, event.dropzoneElement);
-    });
+    Element projectList = querySelector('.project-list');
+    Element newProject = new LIElement();
+
+    String projectName = querySelector('.add-project-input').value;
+    if (projectName != '') {
+      newProject.text = projectName;
+      projectList.children.add(newProject);
+    }
   }
 
   void selectProject(project) {
     myEvent.emit(project);
   }
 
-
-
-  void swapElements(Element elm1, Element elm2) {
-    print('isdragged');
-    var parent1 = elm1.parent;
-    var next1   = elm1.nextElementSibling;
-    var parent2 = elm2.parent;
-    var next2   = elm2.nextElementSibling;
-
-    parent1.insertBefore(elm2, next1);
-    parent2.insertBefore(elm1, next2);
-  }
 
   void listenToClick() {
 

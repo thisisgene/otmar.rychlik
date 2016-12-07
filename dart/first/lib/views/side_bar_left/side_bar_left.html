@@ -2,15 +2,15 @@
   <h2 class="title-small">MENÜPUNKTE</h2>
 
   <div class="sidebar-left--input">
-    <input type="text">
-    <button>
+    <input class="add-project-input" type="text">
+    <button (click)="addProject()">
       <i class="material-icons">add</i>
     </button>
   </div>
   <div class="project-list-wrapper">
     <ul class="project-list">
       <template ngFor let-project [ngForOf]="projects">
-        <li class="sortable" *ngIf="!project.hasParent" [ngClass]="project.hasChildren ? 'has-sub-list' : ''">
+        <li class="project-element sortable" *ngIf="!project.hasParent" [ngClass]="project.hasChildren ? 'has-sub-list' : ''">
           <div class="list-main-content">
             <i class="icon-hasChildren material-icons" *ngIf="project.hasChildren">add_circle_outline</i>
             <a id={{project.id}} class="project-element" (click)="selectProject(project)">{{project.name}}</a>
