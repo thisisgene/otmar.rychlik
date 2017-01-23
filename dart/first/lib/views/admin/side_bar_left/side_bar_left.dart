@@ -5,7 +5,7 @@ import 'dart:html';
 import 'package:dnd/dnd.dart';
 
 import 'package:angular2/angular2.dart';
-import 'package:first/views/project_content/project_content.dart';
+import 'package:first/views/admin/project_content/project_content.dart';
 
 import 'package:first/models/project.dart';
 import 'package:first/services/project_service.dart';
@@ -65,6 +65,7 @@ class SideBarLeft implements OnInit {
     });
   }
 
+
   void addSubProject(Project project, String thisElement) {
 //    Element parentElement = thisElement.parent;
 //    print(parentElement);
@@ -89,8 +90,6 @@ class SideBarLeft implements OnInit {
   void onSelect(Project project) {
     selectedProject = project;
   }
-
-
 
 
 //  void makeActive() {

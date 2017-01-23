@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'dart:html';
 import 'package:angular2/angular2.dart';
-import 'package:first/views/side_bar_left/side_bar_left.dart';
+import 'package:first/views/admin/side_bar_left/side_bar_left.dart';
 
 import 'package:first/models/project.dart';
 import 'package:first/services/project_service.dart';

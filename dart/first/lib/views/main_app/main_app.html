@@ -1,10 +1,9 @@
-<div class='main-container'>
+<div id="main-container">
   <app-header></app-header>
   <main>
-    <side-bar-left (myEvent)="getId($event)"></side-bar-left>
-    <project-content [project]="selectedProject"></project-content>
-    <side-bar-right [project]="selectedProject"></side-bar-right>
-
+    <side-content></side-content>
+    <center-content></center-content>
   </main>
-  <trash-bar></trash-bar>
+
+  <app-footer></app-footer>
 </div>

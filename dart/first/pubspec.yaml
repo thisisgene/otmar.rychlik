@@ -11,7 +11,11 @@ dev_dependencies:
   dart_to_js_script_rewriter: ^1.0.1
 transformers:
 - angular2:
-    entry_points: web/main.dart
+    entry_points:
+      - web/main.dart
+      - web/admin/main.dart
     platform_directives: 'package:angular2/common.dart#CORE_DIRECTIVES'
-    entry_points: 'web/main.dart'
+    entry_points:
+      - 'web/main.dart'
+      - 'web/admin/main.dart'
 - dart_to_js_script_rewriter
