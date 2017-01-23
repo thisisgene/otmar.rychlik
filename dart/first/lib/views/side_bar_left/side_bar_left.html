@@ -16,9 +16,9 @@
             <a id={{project.id}} class="project-element" (click)="selectProject(project)">{{project.name}}</a>
 
             <div class="edit-icons">
-              <i class="icon icon-edit material-icons" (ckick)="editProject(project)">create</i>
-              <i class="icon icon-delete material-icons" (ckick)="deleteProject(project)">delete</i>
-              <i class="icon icon-add material-icons" (ckick)="addProject(project)">add_box</i>
+              <i class="icon icon-edit material-icons" (click)="editProject(project)">create</i>
+              <i class="icon icon-delete material-icons" (click)="deleteProject(project)">delete</i>
+              <i class="icon icon-add material-icons" (click)="addSubProject(project, this)">add_box</i>
             </div>
           </div>
           <ul *ngIf="project.hasChildren" class="project-list sub-list">

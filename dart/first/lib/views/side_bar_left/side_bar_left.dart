@@ -65,6 +65,14 @@ class SideBarLeft implements OnInit {
     });
   }
 
+  void addSubProject(Project project, String thisElement) {
+//    Element parentElement = thisElement.parent;
+//    print(parentElement);
+    print('sosos');
+  }
+
+
+
   final ProjectService _projectService;
   SideBarLeft(this._projectService);
 
@@ -83,13 +91,7 @@ class SideBarLeft implements OnInit {
   }
 
 
-  //  void addClassOpen(MouseEvent e) {
-//    print('detail=${e.detail}');
-//    print('offset=${e.offset}');
-//    print('client=${e.client}');
-//    print('layer=${e.layer}');
-//    print('screen=${e.target}');
-//  }
+
 
 //  void makeActive() {
 //    querySelectorAll('li')
