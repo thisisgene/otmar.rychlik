@@ -1,0 +1,13 @@
+.header-container {
+  background: #C4C4C4;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: .2rem .5rem;
+
+}
+
+h1 {
+  margin: 0;
+  font-weight: 100;
+}

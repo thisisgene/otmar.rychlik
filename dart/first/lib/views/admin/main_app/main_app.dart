@@ -18,7 +18,8 @@ import 'package:first/services/tooltip_service.dart';
     selector: 'main-app',
     styleUrls: const ['main_app.css'],
     directives: const [AppHeader, SideBarLeft, ProjectContent, SideBarRight, TrashBar],
-    providers: const [ProjectService, TooltipService])
+    providers: const [ProjectService, TooltipService]
+)
 
 
 
