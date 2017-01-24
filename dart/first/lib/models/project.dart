@@ -9,6 +9,7 @@ class Project {
   int typeOfLayout;
   String contentTextMD;
   String contentTextHtml;
+  String lastEdit;
   bool isVisible;
   bool isDeleted;
 
@@ -24,6 +25,7 @@ class Project {
       this.typeOfLayout,
       this.contentTextHtml,
       this.contentTextMD,
+      this.lastEdit,
       this.isVisible,
       this.isDeleted
       );
