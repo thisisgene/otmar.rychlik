@@ -3,10 +3,14 @@
     <h1 class="nav-title">OTMAR RYCHLIK</h1>
     <h2 class="nav-subtitle">ADMINBEREICH <small>ver 0.1.1</small></h2>
     <div class="login-wrapper">
-      <span>LOG IN:</span>
-      <input type="text" placeholder="Name">
-      <input type="password" placeholder="Passwort">
-      <button class="submit-button"><i class="material-icons">input</i></button>
+      <!--<span>LOG IN:</span>-->
+      <input id="useremail" type="text" placeholder="user@email.com" *ngIf="fbService.user == null">
+      <input id="password" type="password" placeholder="Password" *ngIf="fbService.user == null">
+      <p *ngIf="fbService.user != null">Eingeloggt als
+        <span>{{fbService.user.email}}</span>
+      </p>
+      <button id="login" class="submit-button" (click)="signIn()" *ngIf="fbService.user == null" ><i class="material-icons">input</i></button>
+      <button id="logout" class="submit-button" (click)="fbService.signOut()" *ngIf="fbService.user != null" ><i class="material-icons">close</i></button>
     </div>
   </div>
 

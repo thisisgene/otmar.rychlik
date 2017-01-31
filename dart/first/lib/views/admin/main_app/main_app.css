@@ -14,6 +14,68 @@ app-header {
   background: #d6d6d6;
 }
 
+.login-screen-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+}
+.login-screen {
+  text-align: center;
+  text-transform: uppercase;
+  color: #AFAFAF;
+
+}
+.login-screen img {
+  width: 12vh;
+  position: absolute;
+  top: 70px;
+  right: 230px;
+  -webkit-animation: blink 1400ms infinite;
+  -o-animation: blink 1400ms infinite;
+  animation: blink 1400ms infinite;
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.login-screen h1 {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 300;
+  font-size: 13vh;
+  color: #AFAFAF;
+  margin: 1rem;
+}
+.login-screen h2 {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 11vh;
+  font-weight: 300;
+  color: #AFAFAF;
+  margin: 1rem;
+}
+.login-screen h3 {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 100;
+  font-size: 5vh;
+  color: #AFAFAF;
+  text-transform: none;
+}
+.login-screen p {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 100;
+  font-size: 7vh;
+  color: #AFAFAF;
+  margin: 1rem;
+}
+
+
 main {
   padding: 1rem 0;
   display: flex;

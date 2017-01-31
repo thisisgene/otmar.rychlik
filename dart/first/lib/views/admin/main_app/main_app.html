@@ -1,10 +1,20 @@
 <div class='main-container'>
   <app-header></app-header>
-  <main>
+  <main *ngIf="fbService.user != null">
     <side-bar-left (myEvent)="getId($event)"></side-bar-left>
     <project-content [project]="selectedProject"></project-content>
     <side-bar-right [project]="selectedProject"></side-bar-right>
 
   </main>
-  <trash-bar></trash-bar>
+  <trash-bar *ngIf="fbService.user != null"></trash-bar>
+
+  <div class="login-screen-container" *ngIf="fbService.user == null">
+    <div class="login-screen">
+      <img src="./assets/img/arrow.svg">
+      <h1>Willkommen</h1>
+      <p>im</p>
+      <h2>Adminbereich</h2>
+      <h3>Zum starten bitte einloggen.</h3>
+    </div>
+  </div>
 </div>

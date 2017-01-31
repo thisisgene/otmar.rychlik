@@ -9,6 +9,8 @@ import 'package:first/views/admin/side_bar_right/side_bar_right.dart';
 import 'package:first/views/admin/trash_bar/trash_bar.dart';
 import 'package:first/models/project.dart';
 import 'package:first/models/tooltip.dart';
+
+import 'package:first/services/firebase_service.dart';
 import 'package:first/services/project_service.dart';
 import 'package:first/services/tooltip_service.dart';
 
@@ -18,7 +20,7 @@ import 'package:first/services/tooltip_service.dart';
     selector: 'main-app',
     styleUrls: const ['main_app.css'],
     directives: const [AppHeader, SideBarLeft, ProjectContent, SideBarRight, TrashBar],
-    providers: const [ProjectService, TooltipService]
+    providers: const [FirebaseService, ProjectService, TooltipService]
 )
 
 
@@ -54,8 +56,13 @@ class MainApp implements OnInit{
     });
   }
 
+  final FirebaseService fbService;
+
   final TooltipService _tooltipService;
-  MainApp(this._tooltipService);
+  MainApp(
+      this._tooltipService,
+      FirebaseService this.fbService
+      );
 
   Future<Null> getTooltips() async {
     tooltips = await _tooltipService.getTooltips();

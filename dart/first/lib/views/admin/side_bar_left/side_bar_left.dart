@@ -15,8 +15,7 @@ import 'package:first/services/project_service.dart';
 @Component(selector: 'side-bar-left',
     templateUrl: 'side_bar_left.html',
     styleUrls: const ['side_bar_left.css'],
-    directives: const [ProjectContent],
-    providers: const [ProjectService]
+    directives: const [ProjectContent]
 )
 class SideBarLeft implements OnInit {
 
@@ -36,8 +35,9 @@ class SideBarLeft implements OnInit {
 
     Element projectList = querySelector('.project-list');
     Element newProject = new LIElement();
-
-    String projectName = querySelector('.add-project-input').nodeValue;
+    InputElement projectInput = querySelector('.add-project-input');
+    String projectName = projectInput.value;
+    print(projectName);
     if (projectName != '') {
       newProject.text = projectName;
       projectList.children.add(newProject);
