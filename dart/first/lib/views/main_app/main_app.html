@@ -1,9 +1,9 @@
 <div id="main-container">
   <app-header></app-header>
   <main>
-    <side-content></side-content>
-    <center-content></center-content>
+    <side-content (myEvent)="getId($event)"></side-content>
+    <center-content [project]="selectedProject"></center-content>
   </main>
 
-  <app-footer></app-footer>
+  <app-footer><p>ohhlasdl</p></app-footer>
 </div>

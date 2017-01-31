@@ -7,11 +7,12 @@ import 'dart:html';
 
 import 'package:first/models/project.dart';
 import 'package:first/services/project_service.dart';
-
+import 'package:first/views/center_content/center_content.dart';
 
 @Component(selector: 'side-content',
     templateUrl: 'side_content.html',
     styleUrls: const ['side_content.css'],
+    directives: const [CenterContent],
     providers: const [ProjectService]
 )
 class SideContent implements OnInit {
@@ -29,6 +30,7 @@ class SideContent implements OnInit {
 
   void selectProject(project) {
     myEvent.emit(project);
+    print(project.name);
   }
 
   void listenToClick() {
@@ -55,6 +57,10 @@ class SideContent implements OnInit {
         target.parent.parent.classes.toggle('is-open');
       }
     });
+  }
+
+  void goBack(id) {
+    print(id);
   }
 
   void ngOnInit() {

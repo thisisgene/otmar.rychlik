@@ -13,7 +13,7 @@ import 'package:first/services/project_service.dart';
     templateUrl: 'main_app.html',
     selector: 'main-app',
     styleUrls: const ['main_app.css'],
-    directives: const [AppHeader, SideContent],
+    directives: const [AppHeader, SideContent, CenterContent],
     providers: const [ProjectService]
 )
 

@@ -37,7 +37,7 @@ class SideBarLeft implements OnInit {
     Element projectList = querySelector('.project-list');
     Element newProject = new LIElement();
 
-    String projectName = querySelector('.add-project-input').value;
+    String projectName = querySelector('.add-project-input').nodeValue;
     if (projectName != '') {
       newProject.text = projectName;
       projectList.children.add(newProject);

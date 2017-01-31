@@ -34,6 +34,7 @@ class MainApp implements OnInit{
 
   void getId(Project project) {
     selectedProject = project;
+    print('hallo jetzt wissen wirs');
   }
 
 
