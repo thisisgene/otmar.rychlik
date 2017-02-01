@@ -5,7 +5,7 @@ import 'package:angular2/angular2.dart';
 import 'package:first/views/admin/side_bar_left/side_bar_left.dart';
 
 import 'package:first/models/project.dart';
-import 'package:first/services/project_service.dart';
+import 'package:first/services/firebase_service.dart';
 
 //import '../../services/firebase_service.dart';
 
@@ -17,6 +17,17 @@ import 'package:first/services/project_service.dart';
 class SideBarRight implements OnInit {
   @Input()
   Project project;
+
+  final FirebaseService fbService;
+
+  SideBarRight(FirebaseService this.fbService);
+
+  void updateProject(key) {
+    String newContent;
+    TextAreaElement contentText = querySelector('#textbox$key');
+    newContent = contentText.value;
+    fbService.updateProject(key, newContent);
+  }
 
   void layoutClick(){
     querySelector('.layout-wrapper').onClick.listen((MouseEvent e) {

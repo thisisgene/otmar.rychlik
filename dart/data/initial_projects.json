@@ -1,0 +1,65 @@
+{
+  "projects" : {
+    "-K2ib4H77rj0LYewF7dP" : {
+      "id": "0001",
+      "name" : "Persönlich",
+      "hasParent" : false,
+      "parentId" : null,
+      "parentName" : null,
+      "hasChildren": true,
+      "childIds": ["12345"],
+      "typeOfLayout": 1,
+      "contentTextHtml": "Das ist <bold>ein</bold> Text",
+      "contentTextMD": "Das ist **ein** Text",
+      "lastEdit": "10.01.2017",
+      "isVisible": true,
+      "isDeleted": false
+
+    },
+    "-K2ib5JHRbbL0NrztUfO" : {
+      "id": "0002",
+      "name" : "Kunsthistoriker",
+      "hasParent" : false,
+      "parentId" : null,
+      "parentName" : null,
+      "hasChildren": true,
+      "childIds": ["1234b"],
+      "typeOfLayout": 1,
+      "contentTextHtml": "Das ist auch <bold>ein</bold> Text",
+      "contentTextMD": "Das ist auch **ein** Text",
+      "lastEdit": "10.01.2017",
+      "isVisible": true,
+      "isDeleted": false
+    },
+    "-K2ib62mjHh34CAUbide" : {
+      "id": "0003",
+      "name" : "Künstler",
+      "hasParent" : false,
+      "parentId" : null,
+      "parentName" : null,
+      "hasChildren": false,
+      "childIds": [],
+      "typeOfLayout": 1,
+      "contentTextHtml": "Das ist noch <bold>ein</bold> Text",
+      "contentTextMD": "Das ist noch **ein** Text",
+      "lastEdit": "10.01.2017",
+      "isVisible": true,
+      "isDeleted": false
+    },
+    "-K2ib62mjHh34CGEbges" : {
+      "id": "12345",
+      "name" : "Tagebuch",
+      "hasParent" : true,
+      "parentId" : "0001",
+      "parentName" : "Persönliches",
+      "hasChildren": false,
+      "childIds": [],
+      "typeOfLayout": 1,
+      "contentTextHtml": "Das ist <bold>ein</bold> UnterText",
+      "contentTextMD": "Das ist **ein** UnterText",
+      "lastEdit": "10.01.2017",
+      "isVisible": true,
+      "isDeleted": false
+    }
+  }
+}

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'dart:html';
+import 'dart:math';
 
 import 'package:dnd/dnd.dart';
 
@@ -8,7 +9,7 @@ import 'package:angular2/angular2.dart';
 import 'package:first/views/admin/project_content/project_content.dart';
 
 import 'package:first/models/project.dart';
-import 'package:first/services/project_service.dart';
+import 'package:first/services/firebase_service.dart';
 
 //import '../../services/firebase_service.dart';
 
@@ -31,17 +32,32 @@ class SideBarLeft implements OnInit {
   @Output() EventEmitter<String> myEvent = new EventEmitter();
 
 
-  void addProject() {
+  void addProject(type, {project}) {
 
-    Element projectList = querySelector('.project-list');
-    Element newProject = new LIElement();
     InputElement projectInput = querySelector('.add-project-input');
     String projectName = projectInput.value;
     print(projectName);
     if (projectName != '') {
-      newProject.text = projectName;
-      projectList.children.add(newProject);
+
+      String parentKey = '';
+      String parentName = '';
+
+      bool hasParent = false;
+      if (type != 'main') hasParent = true;
+      if (project != null) {
+        parentKey = project.key;
+        parentName = project.name;
+      }
+      fbService.addProject(projectName, hasParent, parentKey, parentName);
+      print('hallo das ist '+projectName);
     }
+
+  }
+
+  void deleteProject(key) {
+    Element project = querySelector("#project$key");
+    project.remove();
+    fbService.deleteProject(key);
   }
 
   void selectProject(project) {
@@ -66,24 +82,27 @@ class SideBarLeft implements OnInit {
   }
 
 
-  void addSubProject(Project project, String thisElement) {
-//    Element parentElement = thisElement.parent;
-//    print(parentElement);
-    print('sosos');
+  void addSubProject(Project project, Element thisElement) {
+    Element projectElement = thisElement.parent;
+    InputElement nameInput = new InputElement();
+    projectElement.children.add(nameInput);
   }
 
+  final FirebaseService fbService;
 
+  SideBarLeft(FirebaseService this.fbService);
 
-  final ProjectService _projectService;
-  SideBarLeft(this._projectService);
-
-
-  Future<Null> getProjects() async {
-    projects = await _projectService.getProjects();
-  }
+//
+//  final ProjectService _projectService;
+//  SideBarLeft(this._projectService);
+//
+//
+//  Future<Null> getProjects() async {
+//    projects = await _projectService.getProjects();
+//  }
 
   void ngOnInit() {
-    getProjects();
+//    getProjects();
     listenToClick();
   }
 

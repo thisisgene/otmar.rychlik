@@ -7,7 +7,7 @@
 
   <div class="text-wrapper visible has-tooltip" data-tooltip="markdown">
     <div *ngIf="project != null">
-      <textarea>{{project.contentTextMD}}</textarea>
+      <textarea id="textbox{{project.key}}" value="{{project.contentTextMD}}"></textarea>
     </div>
   </div>
   <div class="img-wrapper">

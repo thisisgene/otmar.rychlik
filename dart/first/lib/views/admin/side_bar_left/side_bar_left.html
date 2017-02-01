@@ -3,30 +3,30 @@
 
   <div class="sidebar-left--input">
     <input class="add-project-input" type="text">
-    <button (click)="addProject()">
+    <button (click)="addProject('main')">
       <i class="material-icons">add</i>
     </button>
   </div>
   <div class="project-list-wrapper">
     <ul class="project-list">
-      <template ngFor let-project [ngForOf]="projects">
-        <li class="project-element sortable" *ngIf="!project.hasParent" [ngClass]="project.hasChildren ? 'has-sub-list' : ''">
+      <template ngFor let-project [ngForOf]="fbService.projects">
+        <li id="project{{project.key}}" class="project-element sortable" *ngIf="!project.hasParent && !project.isDeleted && project.isVisible" [ngClass]="project.hasChildren ? 'has-sub-list' : ''">
           <div class="list-main-content">
             <i class="icon-hasChildren material-icons" *ngIf="project.hasChildren">add_circle_outline</i>
-            <a id={{project.id}} class="project-element" (click)="selectProject(project)">{{project.name}}</a>
+            <a id={{project.key}} class="project-element" (click)="selectProject(project)">{{project.name}}</a>
 
             <div class="edit-icons">
               <i class="icon icon-edit material-icons" (click)="editProject(project)">create</i>
-              <i class="icon icon-delete material-icons" (click)="deleteProject(project)">delete</i>
+              <i class="icon icon-delete material-icons" (click)="deleteProject(project.key)">delete</i>
               <i class="icon icon-add material-icons" (click)="addSubProject(project, this)">add_box</i>
             </div>
           </div>
           <ul *ngIf="project.hasChildren" class="project-list sub-list">
-            <template ngFor let-subproject [ngForOf]="projects">
-              <li *ngIf="subproject.parentId==project.id" [ngClass]="subproject.hasChildren ? 'has-sub-list' : ''">
+            <template ngFor let-subproject [ngForOf]="fbService.projects">
+              <li *ngIf="subproject.parentId==project.id && !project.isDeleted && project.isVisible" [ngClass]="subproject.hasChildren ? 'has-sub-list' : ''">
                 <div class="list-main-content">
                   <i class="icon-hasChildren material-icons" *ngIf="subproject.hasChildren">add_circle_outline</i>
-                  <a id={{subproject.id}} class="project-element" (click)="selectProject(subproject)">{{subproject.name}}</a>
+                  <a id={{subproject.key}} class="project-element" (click)="selectProject(subproject)">{{subproject.name}}</a>
                   <div class="edit-icons">
                     <i class="icon icon-edit material-icons">create</i>
                     <i class="icon icon-delete material-icons">delete</i>
@@ -34,11 +34,11 @@
                   </div>
                 </div>
                 <ul *ngIf="subproject.hasChildren" class="project-list sub-list">
-                  <template ngFor let-subsubproject [ngForOf]="projects">
-                    <li *ngIf="subsubproject.parentId==subproject.id">
+                  <template ngFor let-subsubproject [ngForOf]="fbService.projects">
+                    <li *ngIf="subsubproject.parentId==subproject.id && !project.isDeleted && project.isVisible">
                       <div class="list-main-content">
                         <i class="icon-hasChildren material-icons" *ngIf="subsubproject.hasChildren">add_circle_outline</i>
-                        <a id={{subsubproject.id}} class="project-element" (click)="selectProject(subsubproject)">{{subsubproject.name}}</a>
+                        <a id={{subsubproject.key}} class="project-element" (click)="selectProject(subsubproject)">{{subsubproject.name}}</a>
                         <div class="edit-icons">
                           <i class="icon icon-edit material-icons">create</i>
                           <i class="icon icon-delete material-icons">delete</i>
