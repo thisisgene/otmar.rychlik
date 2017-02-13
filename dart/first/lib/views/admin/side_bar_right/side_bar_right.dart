@@ -20,30 +20,28 @@ class SideBarRight implements OnInit {
 
   final FirebaseService fbService;
 
+  String layoutClass = 'layout_img';
+
   SideBarRight(FirebaseService this.fbService);
 
   void updateProject(key) {
-    String newContent;
-    TextAreaElement contentText = querySelector('#textbox$key');
-    newContent = contentText.value;
-    fbService.updateProject(key, newContent);
+    if (key!=null) {
+      String newContent;
+      TextAreaElement contentText = querySelector('#textbox$key');
+      newContent = contentText.value;
+      fbService.updateProject(key, newContent, layoutClass);
+    }
   }
 
   void layoutClick(){
     querySelector('.layout-wrapper').onClick.listen((MouseEvent e) {
       Element target = e.target;
+      Element layoutElement = target.parent;
       if (!target.classes.contains('layout__active')) {
         querySelectorAll('.layout__active').classes.remove('layout__active');
         target.parent.classes.add('layout__active');
+        layoutClass = layoutElement.dataset['tooltip'];
 
-//        if (target.classes.contains('menu-item__text')) {
-//          querySelector('.text-wrapper').classes.add('visible');
-//          querySelector('.img-wrapper').classes.remove('visible');
-//        }
-//        else if (target.classes.contains('menu-item__img')) {
-//          querySelector('.text-wrapper').classes.remove('visible');
-//          querySelector('.img-wrapper').classes.add('visible');
-//        }
       }
     });
   }

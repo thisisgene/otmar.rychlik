@@ -86,6 +86,13 @@
   color: rgba(0, 0, 0, 0.4);
 }
 
+.dropbox__dragndrop,
+.dropbox__uploading,
+.dropbox__success,
+.dropbox__error {
+  display: none;
+}
+
 .img-wrapper .img-list {
   border: 1px solid #ddd;
   box-sizing: border-box;

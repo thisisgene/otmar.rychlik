@@ -74,6 +74,7 @@ const String contentTextMD = "contentTextMD";
 const String contentTextHtml = "contentTextHtml";
 const String hasParent = "hasParent";
 const String hasChildren = "hasChildren";
+const String layoutClass = "layoutClass";
 const String isVisible = "isVisible";
 const String isDeleted = "isDeleted";
 
@@ -83,6 +84,7 @@ class Project {
   String contentTextHtml;
   bool hasParent;
   bool hasChildren;
+  String layoutClass;
   bool isVisible;
   bool isDeleted;
   String key;
@@ -95,6 +97,7 @@ class Project {
     this.contentTextHtml,
     this.hasParent,
     this.hasChildren,
+    this.layoutClass,
     this.isVisible,
     this.isDeleted,
     this.key]
@@ -109,6 +112,7 @@ class Project {
     "contentTextHtml": contentTextHtml,
     "hasParent": hasParent,
     "hasChildren": hasChildren,
+    "layoutClass": layoutClass,
     "isVisible": isVisible,
     "isDeleted": isDeleted
   };

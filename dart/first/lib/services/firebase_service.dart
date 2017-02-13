@@ -30,6 +30,8 @@ class FirebaseService {
 
     _fbDatabase = fb.database();
     _fbRefProjects = _fbDatabase.ref("projects");
+
+    _fbStorage = fb.storage();
   }
 
   void _authChanged(fb.AuthEvent event) {
@@ -44,14 +46,14 @@ class FirebaseService {
   void _newProject(fb.QueryEvent event) {
     String key = event.snapshot.key;
     var val = event.snapshot.val();
-    Project project = new Project(val[name], val[contentTextMD], val[contentTextHtml], val[hasParent], val[hasChildren], val[isVisible], val[isDeleted], key);
+    Project project = new Project(val[name], val[contentTextMD], val[contentTextHtml], val[hasParent], val[hasChildren], val[layoutClass], val[isVisible], val[isDeleted], key);
     projects.add(project);
     print(project.name);
   }
 
   Future addProject(String name, bool hasParent, String parentId, String parentName) async {
     try {
-      Project project = new Project(name, null, null, hasParent, false, true, false);
+      Project project = new Project(name, null, null, hasParent, false, "layout_img", true, false);
       await _fbRefProjects.push(project.toMap());
     }
     catch (error) {
@@ -59,10 +61,13 @@ class FirebaseService {
     }
   }
 
-  Future updateProject(String key, String newContent) async {
+  Future updateProject(String key, String newContent, String layoutClass) async {
     try {
-      await _fbRefProjects.child(key).update({"contentTextMD": newContent});
-      _fbRefProjects.onChildAdded.listen(_newProject);
+      await _fbRefProjects.child(key).update({
+        "contentTextMD": newContent,
+        "layoutClass": layoutClass
+      });
+
     } catch (e) {
     print("Error in deleting $key: $e");
     }

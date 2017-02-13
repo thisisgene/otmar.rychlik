@@ -4,8 +4,8 @@
     <h2 class="nav-subtitle">ADMINBEREICH <small>ver 0.1.1</small></h2>
     <div class="login-wrapper">
       <!--<span>LOG IN:</span>-->
-      <input id="useremail" type="text" placeholder="user@email.com" *ngIf="fbService.user == null">
-      <input id="password" type="password" placeholder="Password" *ngIf="fbService.user == null">
+      <input id="useremail" type="text" placeholder="user@email.com" *ngIf="fbService.user == null" (keyup.enter)="signIn()">
+      <input id="password" type="password" placeholder="Password" *ngIf="fbService.user == null" (keyup.enter)="signIn()">
       <p *ngIf="fbService.user != null">Eingeloggt als
         <span>{{fbService.user.email}}</span>
       </p>
