@@ -2,15 +2,15 @@
   <div class="wrapper general-wrapper">
     <h2 class="title-small">ALLGEMEIN</h2>
     <div class="layout-wrapper">
-      <div class="layout layout-img has-tooltip layout__active" data-tooltip="layout_image">
+      <div class="layout layout-img has-tooltip" [class.layout__active]="project?.layoutClass == 'layout_image'" data-tooltip="layout_image">
         <div class="layout__img"></div>
         <span class="layout__desc">Layout mit Bild</span>
       </div>
-      <div class="layout layout-text has-tooltip" data-tooltip="layout_text">
+      <div class="layout layout-text has-tooltip" [class.layout__active]="project?.layoutClass == 'layout_text'" data-tooltip="layout_text">
         <div class="layout__img"></div>
         <span class="layout__desc">Layout mit Text</span>
       </div>
-      <div class="layout layout-menu has-tooltip" data-tooltip="layout_menu">
+      <div class="layout layout-menu has-tooltip" [class.layout__active]="project?.layoutClass == 'layout_menu'" data-tooltip="layout_menu">
         <div class="layout__img"></div>
         <span class="layout__desc">Nur Menü</span>
       </div>
@@ -23,7 +23,7 @@
   <div class="wrapper save-wrapper">
     <h2 class="title-small">ALLES SPEICHERN</h2>
     <div class="button-wrapper">
-      <a class="button button__save has-tooltip" data-tooltip="save" (click)="updateProject(project.key)">Speichern</a>
+      <a class="button button__save has-tooltip" data-tooltip="save" (click)="updateProject(project?.key)">Speichern</a>
       <a class="button button__cancel">Verwerfen</a>
     </div>
   </div>

@@ -34,7 +34,9 @@ class SideBarRight implements OnInit {
   }
 
   void layoutClick(){
-    querySelector('.layout-wrapper').onClick.listen((MouseEvent e) {
+    Element layoutWrapper = querySelector('.layout-wrapper');
+
+    layoutWrapper.onClick.listen((MouseEvent e) {
       Element target = e.target;
       Element layoutElement = target.parent;
       if (!target.classes.contains('layout__active')) {
