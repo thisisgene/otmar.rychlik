@@ -4,6 +4,8 @@ import 'dart:html';
 import 'package:angular2/angular2.dart';
 import 'package:first/views/admin/side_bar_left/side_bar_left.dart';
 
+import 'package:markdown/markdown.dart' as markdown;
+
 import 'package:first/models/project.dart';
 import 'package:first/services/firebase_service.dart';
 
@@ -17,6 +19,8 @@ class ProjectContent implements OnInit {
 
   @Input()
   Project project;
+
+  bool previewVisible = false;
 
   void menuClick(){
     querySelector('.menu-selection').onClick.listen((MouseEvent e) {
@@ -35,6 +39,15 @@ class ProjectContent implements OnInit {
         }
       }
     });
+  }
+
+  togglePreview(key) {
+    TextAreaElement text = querySelector("#textbox$key");
+    String newText = markdown.markdownToHtml(text.value);
+    Element preview = querySelector('.preview-box');
+    preview.innerHtml = newText;
+
+    preview.classes.toggle('visible');
   }
 
   void ngOnInit() {

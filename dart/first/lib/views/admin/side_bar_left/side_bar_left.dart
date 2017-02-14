@@ -1,9 +1,6 @@
 import 'dart:async';
 
 import 'dart:html';
-import 'dart:math';
-
-import 'package:dnd/dnd.dart';
 
 import 'package:angular2/angular2.dart';
 import 'package:first/views/admin/project_content/project_content.dart';

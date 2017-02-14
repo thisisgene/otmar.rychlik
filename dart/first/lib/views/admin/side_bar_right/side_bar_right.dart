@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:html';
 import 'package:angular2/angular2.dart';
 import 'package:first/views/admin/main_app/main_app.dart';
+import 'package:first/views/admin/side_bar_left/side_bar_left.dart';
 
 import 'package:markdown/markdown.dart' as markdown;
 
@@ -15,7 +16,7 @@ import 'package:first/services/firebase_service.dart';
 @Component(selector: 'side-bar-right',
     templateUrl: 'side_bar_right.html',
     styleUrls: const ['side_bar_right.css'],
-    providers: const [SideBarRight, MainApp]
+    providers: const [SideBarRight, MainApp, SideBarLeft]
 )
 class SideBarRight implements AfterViewInit {
   @Input()
@@ -23,6 +24,7 @@ class SideBarRight implements AfterViewInit {
 
   final FirebaseService fbService;
   final MainApp mainApp;
+  final SideBarLeft sideBarLeft;
 
   String layoutClass = 'layout_img';
   bool projectVisible = true;
@@ -30,7 +32,8 @@ class SideBarRight implements AfterViewInit {
 
   SideBarRight(
       FirebaseService this.fbService,
-      MainApp this.mainApp
+      MainApp this.mainApp,
+      SideBarLeft this.sideBarLeft
       );
 
   updateProject(key) async {
@@ -51,6 +54,10 @@ class SideBarRight implements AfterViewInit {
       spinScreen.classes.remove('is-loading');
 
     }
+  }
+
+  revertProject(project) {
+    sideBarLeft.selectProject(project);
   }
 
   void layoutClick(){

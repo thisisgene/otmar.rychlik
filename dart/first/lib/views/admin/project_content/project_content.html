@@ -8,6 +8,10 @@
   <div class="text-wrapper visible has-tooltip" data-tooltip="markdown">
     <div *ngIf="project != null">
       <textarea id="textbox{{project.key}}" value="{{project.contentTextMD}}"></textarea>
+      <div class="preview-box">
+
+      </div>
+      <button class="preview-btn" (click)="togglePreview(project?.key)">Vorschau</button>
     </div>
   </div>
   <div class="img-wrapper">
