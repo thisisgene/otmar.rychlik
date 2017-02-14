@@ -10,7 +10,7 @@
   <div class="project-list-wrapper">
     <ul class="project-list">
       <template ngFor let-project [ngForOf]="fbService.projects">
-        <li id="project{{project.key}}" class="project-element sortable" *ngIf="!project.hasParent && !project.isDeleted && project.isVisible" [ngClass]="project.hasChildren ? 'has-sub-list' : ''">
+        <li id="project{{project.key}}" class="project-element sortable" *ngIf="!project.hasParent && !project.isDeleted" [ngClass]="project.hasChildren ? 'has-sub-list' : ''">
           <div class="list-main-content">
             <i class="icon-hasChildren material-icons" *ngIf="project.hasChildren">add_circle_outline</i>
             <a id={{project.key}} class="project-element" (click)="selectProject(project)">{{project.name}}</a>
@@ -23,7 +23,7 @@
           </div>
           <ul *ngIf="project.hasChildren" class="project-list sub-list">
             <template ngFor let-subproject [ngForOf]="fbService.projects">
-              <li *ngIf="subproject.parentId==project.id && !project.isDeleted && project.isVisible" [ngClass]="subproject.hasChildren ? 'has-sub-list' : ''">
+              <li *ngIf="subproject.parentId==project.id && !project.isDeleted" [ngClass]="subproject.hasChildren ? 'has-sub-list' : ''">
                 <div class="list-main-content">
                   <i class="icon-hasChildren material-icons" *ngIf="subproject.hasChildren">add_circle_outline</i>
                   <a id={{subproject.key}} class="project-element" (click)="selectProject(subproject)">{{subproject.name}}</a>
@@ -35,7 +35,7 @@
                 </div>
                 <ul *ngIf="subproject.hasChildren" class="project-list sub-list">
                   <template ngFor let-subsubproject [ngForOf]="fbService.projects">
-                    <li *ngIf="subsubproject.parentId==subproject.id && !project.isDeleted && project.isVisible">
+                    <li *ngIf="subsubproject.parentId==subproject.id && !project.isDeleted">
                       <div class="list-main-content">
                         <i class="icon-hasChildren material-icons" *ngIf="subsubproject.hasChildren">add_circle_outline</i>
                         <a id={{subsubproject.key}} class="project-element" (click)="selectProject(subsubproject)">{{subsubproject.name}}</a>

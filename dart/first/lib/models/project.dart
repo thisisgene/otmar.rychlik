@@ -1,74 +1,3 @@
-//class Project {
-//  String id;
-//  String name;
-//  bool hasParent;
-//  String parentId;
-//  String parentName;
-//  bool hasChildren;
-//  List childIds;
-//  int typeOfLayout;
-//  String contentTextMD;
-//  String contentTextHtml;
-//  String lastEdit;
-//  bool isVisible;
-//  bool isDeleted;
-//  String key;
-//
-//
-//
-//  Project(
-//      this.id,
-//      this.name,
-//      [this.hasParent,
-//      this.parentId,
-//      this.parentName,
-//      this.hasChildren,
-//      this.childIds,
-//      this.typeOfLayout,
-//      this.contentTextHtml,
-//      this.contentTextMD,
-//      this.lastEdit,
-//      this.isVisible,
-//      this.isDeleted,
-//      this.key]
-//      );
-//
-//  Project.fromMap(Map map) : this(
-//      map['id'],
-//      map['name'],
-//      map['hasParent'],
-//      map['parentId'],
-//      map['parentName'],
-//      map['hasChildren'],
-//      map['childIds'],
-//      map['typeOfLayout'],
-//      map['contentTextHtml'],
-//      map['contentTextMD'],
-//      map['lastEdit'],
-//      map['isVisible'],
-//      map['isDeleted'],
-//      map['key']
-//
-//  );
-//
-//  Map toMap() => {
-//    "id": id,
-//    "name": name,
-//    "hasParent": hasParent,
-//    "parentId": parentId,
-//    "parentName": parentName,
-//    "hasChildren": hasChildren,
-//    "childIds": childIds,
-//    "typeOfLayout": typeOfLayout,
-//    "contentTextHtml": contentTextHtml,
-//    "contentTextMD": contentTextMD,
-//    "lastEdit": lastEdit,
-//    "isVisible": isVisible,
-//    "isDeleted": isDeleted
-//  };
-//
-//}
-
 const String name = "name";
 const String contentTextMD = "contentTextMD";
 const String contentTextHtml = "contentTextHtml";
@@ -89,8 +18,6 @@ class Project {
   bool isDeleted;
   String key;
 
-
-
   Project(
     this.name,
     [this.contentTextMD,
@@ -102,8 +29,6 @@ class Project {
     this.isDeleted,
     this.key]
   );
-
-
 
   Map toMap() => {
 

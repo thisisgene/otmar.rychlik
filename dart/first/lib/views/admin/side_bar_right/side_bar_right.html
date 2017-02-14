@@ -16,10 +16,10 @@
       </div>
     </div>
     <div class="check-wrapper">
-    <input type="checkbox" checked> Wird angezeigt
+    <input type="checkbox" [checked]="project?.isVisible" (click)="toggleVisibility($event)"> Wird angezeigt
   </div>
-  </div>
-  <hr class="divider">
+  <hr class="divider" />
+
   <div class="wrapper save-wrapper">
     <h2 class="title-small">ALLES SPEICHERN</h2>
     <div class="button-wrapper">

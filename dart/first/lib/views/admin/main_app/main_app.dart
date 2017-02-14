@@ -10,8 +10,8 @@ import 'package:first/views/admin/trash_bar/trash_bar.dart';
 import 'package:first/models/project.dart';
 import 'package:first/models/tooltip.dart';
 
-import 'package:first/services/firebase_service.dart';
 import 'package:first/services/tooltip_service.dart';
+import 'package:first/services/firebase_service.dart';
 
 
 @Component(
@@ -24,26 +24,34 @@ import 'package:first/services/tooltip_service.dart';
 
 
 
-class MainApp implements OnInit{
+class MainApp implements AfterViewInit {
 
   Project selectedProject;
 
-
   List<Tooltip> tooltips;
 
-  Tooltip currentTooltip;
+  var isLoading = false;
 
   void getId(Project project) {
-    selectedProject = project;
+    if (fbService.user!=null) {
+      selectedProject = project;
+
+    }
     print('hallo jetzt wissen wirs');
   }
 
+  isItLoading(status) {
+    isLoading = status;
+    print(isLoading);
+  }
 
   void checkForTooltip() {
+    getTooltips();
     Element infoHeader = querySelector('.info-header');
     Element infoText = querySelector('.info-text');
 
     querySelectorAll('.has-tooltip').onMouseEnter.listen((MouseEvent e) {
+
       Element tooltipElement = e.target;
       String tooltipName = tooltipElement.dataset['tooltip'];
       tooltips.forEach((element) {
@@ -56,20 +64,17 @@ class MainApp implements OnInit{
   }
 
   final FirebaseService fbService;
+  final TooltipService tooltipService;
+  MainApp(FirebaseService this.fbService, TooltipService this.tooltipService);
 
-  final TooltipService _tooltipService;
-  MainApp(
-      this._tooltipService,
-      FirebaseService this.fbService
-      );
-
+//
   Future<Null> getTooltips() async {
-    tooltips = await _tooltipService.getTooltips();
+    tooltips = await tooltipService.getTooltips();
+    print(tooltips);
   }
+//
+  void ngAfterViewInit() {
 
-  void ngOnInit() {
-    checkForTooltip();
-    getTooltips();
   }
 
 }

@@ -1,3 +1,7 @@
+const String ttname = "name";
+const String header = "header";
+const String content = "content";
+
 class Tooltip {
   final String id;
   String name;
@@ -11,4 +15,11 @@ class Tooltip {
     this.header,
     this.content
   );
+
+  Map toMap() => {
+
+    "name": name,
+    "header": header,
+    "content": content
+  };
 }

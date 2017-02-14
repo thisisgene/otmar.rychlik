@@ -18,6 +18,7 @@ class FirebaseService {
 
   List<Project> projects;
 
+
   FirebaseService() {
     fb.initializeApp(
         apiKey: "AIzaSyAr0Syw8nfvs79Yd6w42pX3ley3KFecDNs",
@@ -38,8 +39,9 @@ class FirebaseService {
     user = event.user;
     if (user != null) {
       projects = [];
+
       _fbRefProjects.onChildAdded.listen(_newProject);
-      print('jetz is da!');
+
     }
   }
 
@@ -48,8 +50,9 @@ class FirebaseService {
     var val = event.snapshot.val();
     Project project = new Project(val[name], val[contentTextMD], val[contentTextHtml], val[hasParent], val[hasChildren], val[layoutClass], val[isVisible], val[isDeleted], key);
     projects.add(project);
-    print(project.name);
   }
+
+
 
   Future addProject(String name, bool hasParent, String parentId, String parentName) async {
     try {
@@ -61,11 +64,13 @@ class FirebaseService {
     }
   }
 
-  Future updateProject(String key, String newContent, String layoutClass) async {
+  Future updateProject(String key, String newContent, String newContentHtml, String layoutClass, bool isVisible) async {
     try {
       await _fbRefProjects.child(key).update({
-        "contentTextMD": newContent,
-        "layoutClass": layoutClass
+        "contentTextMD"   : newContent,
+        "contentTextHtml" : newContentHtml,
+        "layoutClass"     : layoutClass,
+        "isVisible"       : isVisible
       });
 
     } catch (e) {

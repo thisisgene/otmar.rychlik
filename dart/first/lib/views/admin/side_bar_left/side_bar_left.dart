@@ -51,7 +51,6 @@ class SideBarLeft implements OnInit {
       fbService.addProject(projectName, hasParent, parentKey, parentName);
       print('hallo das ist '+projectName);
     }
-
   }
 
   void deleteProject(key) {
