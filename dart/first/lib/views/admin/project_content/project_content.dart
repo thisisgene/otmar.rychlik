@@ -1,4 +1,4 @@
-import 'dart:async';
+//import 'dart:async';
 
 import 'dart:html';
 import 'package:angular2/angular2.dart';
@@ -45,7 +45,7 @@ class ProjectContent implements OnInit {
     TextAreaElement text = querySelector("#textbox$key");
     String newText = markdown.markdownToHtml(text.value);
     Element preview = querySelector('.preview-box');
-    preview.innerHtml = newText;
+    preview.setInnerHtml(newText, treeSanitizer: new NullTreeSanitizer());
 
     preview.classes.toggle('visible');
   }
@@ -53,4 +53,8 @@ class ProjectContent implements OnInit {
   void ngOnInit() {
     menuClick();
   }
+
+}
+class NullTreeSanitizer implements NodeTreeSanitizer {
+  void sanitizeTree(Node node) {}
 }
