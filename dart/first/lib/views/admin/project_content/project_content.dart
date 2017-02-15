@@ -12,8 +12,7 @@ import 'package:first/services/firebase_service.dart';
 
 @Component(selector: 'project-content',
     templateUrl: 'project_content.html',
-    styleUrls: const ['project_content.css'],
-    providers: const [FirebaseService]
+    styleUrls: const ['project_content.css']
 )
 class ProjectContent implements OnInit {
 
@@ -21,6 +20,9 @@ class ProjectContent implements OnInit {
   Project project;
 
   bool previewVisible = false;
+
+  final FirebaseService fbService;
+  ProjectContent(FirebaseService this.fbService);
 
   void menuClick(){
     querySelector('.menu-selection').onClick.listen((MouseEvent e) {
@@ -49,6 +51,14 @@ class ProjectContent implements OnInit {
 
     preview.classes.toggle('visible');
   }
+
+  uploadImages(FileList files, Project project) {
+    files.forEach((file) {
+      fbService.uploadImage(file, project);
+    });
+  }
+
+
 
   void ngOnInit() {
     menuClick();

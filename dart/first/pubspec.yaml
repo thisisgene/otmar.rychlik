@@ -10,6 +10,7 @@ dependencies:
   stream_transformers: ^0.3.0
   firebase: ^3.0.0
   markdown: ^0.11.2
+  dropzone_angular_dart: ^0.1.0
 dev_dependencies:
   browser: ^0.10.0
   dart_to_js_script_rewriter: ^1.0.1

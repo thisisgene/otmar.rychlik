@@ -4,6 +4,7 @@ const String contentTextHtml = "contentTextHtml";
 const String hasParent = "hasParent";
 const String hasChildren = "hasChildren";
 const String layoutClass = "layoutClass";
+const String imageList = "imageList";
 const String isVisible = "isVisible";
 const String isDeleted = "isDeleted";
 
@@ -14,6 +15,7 @@ class Project {
   bool hasParent;
   bool hasChildren;
   String layoutClass;
+  List imageList;
   bool isVisible;
   bool isDeleted;
   String key;
@@ -25,6 +27,7 @@ class Project {
     this.hasParent,
     this.hasChildren,
     this.layoutClass,
+    this.imageList,
     this.isVisible,
     this.isDeleted,
     this.key]
@@ -38,6 +41,7 @@ class Project {
     "hasParent": hasParent,
     "hasChildren": hasChildren,
     "layoutClass": layoutClass,
+    "imageList": imageList,
     "isVisible": isVisible,
     "isDeleted": isDeleted
   };

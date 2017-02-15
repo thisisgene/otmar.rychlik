@@ -48,7 +48,7 @@ class FirebaseService {
   void _newProject(fb.QueryEvent event) {
     String key = event.snapshot.key;
     var val = event.snapshot.val();
-    Project project = new Project(val[name], val[contentTextMD], val[contentTextHtml], val[hasParent], val[hasChildren], val[layoutClass], val[isVisible], val[isDeleted], key);
+    Project project = new Project(val[name], val[contentTextMD], val[contentTextHtml], val[hasParent], val[hasChildren], val[layoutClass], val[imageList], val[isVisible], val[isDeleted], key);
     projects.add(project);
   }
 
@@ -56,7 +56,7 @@ class FirebaseService {
 
   Future addProject(String name, bool hasParent, String parentId, String parentName) async {
     try {
-      Project project = new Project(name, null, null, hasParent, false, "layout_img", true, false);
+      Project project = new Project(name, null, null, hasParent, false, "layout_img", [], true, false);
       await _fbRefProjects.push(project.toMap());
     }
     catch (error) {
@@ -74,7 +74,7 @@ class FirebaseService {
       });
 
     } catch (e) {
-    print("Error in deleting $key: $e");
+      print("Error in deleting $key: $e");
     }
 
 //    TODO: Updating without refreshing
@@ -89,6 +89,59 @@ class FirebaseService {
       print("Error in deleting $key: $e");
     }
   }
+
+  Future uploadImage(File file, Project project) async {
+    saveImageToProject(file.name, project.key);
+
+//    print(file.name);
+//    fb.StorageReference fbRefImage =
+//    _fbStorage.ref("${project.name}/${new DateTime.now()}/${file.name}");
+//
+//    print(fbRefImage);
+//
+//
+//    fb.UploadTask task =
+//    fbRefImage.put(file, new fb.UploadMetadata(contentType: file.type));
+//
+//    StreamSubscription sub;
+//
+//    sub = task.onStateChanged.listen((fb.UploadTaskSnapshot snapshot) {
+//      print("Uploading Image -- Transfered ${snapshot.bytesTransferred}/${snapshot.totalBytes}...");
+//
+//      if (snapshot.bytesTransferred == snapshot.totalBytes) {
+//        sub.cancel();
+//      }
+//    }, onError: (fb.FirebaseError error) {
+//      print(error.message);
+//    });
+//
+//    try {
+//      fb.UploadTaskSnapshot snapshot = await task.future;
+//
+//      if (snapshot.state == fb.TaskState.SUCCESS) {
+//        saveImageToProject(file.name, project.key);
+//      }
+//    } catch (error) {
+//      print(error);
+//    }
+  }
+
+  Future saveImageToProject(String filename, String key) async {
+    var projectRef = _fbRefProjects.child(key).startAt(priority: (snapshotPriority == null) ? null : snapshotPriority).limit(pageSize+1);
+    await projectRef.once('value').then((snapshot) {
+      snapshot.forEach((itemSnapshot) {
+        print(itemSnapshot);
+      });
+    });
+
+    //    try {
+//      await _fbRefProjects.child(key);
+//
+//    } catch (e) {
+//      print("Error in deleting $key: $e");
+//    }
+  }
+
 
   Future signIn(email, password) async {
     try {
