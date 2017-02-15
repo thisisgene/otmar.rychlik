@@ -19,12 +19,20 @@
       <input #mediaCapture type="file" multiple accept="image/*" (change)="uploadImages(mediaCapture.files, project)">
     </div>
     <div class="img-list-wrapper">
+      <!--<template *ngIf="preview_src!=null">-->
+
+      <!--</template>-->
       <ul class="img-list">
         <template ngFor let-image [ngForOf]="fbService.images">
 
           <li>
+
             <div class="img-thumb">
               <img src="{{image.imgPath}}" height="30px" >
+
+            </div>
+            <div class="preview-img">
+              <img src="{{image.imgPath}}">
             </div>
             <div class="img-name">
               <span>{{image.imgName}}</span>
@@ -34,6 +42,7 @@
               <a><i class="material-icons">visibility</i></a>
               <a><i class="material-icons">delete</i></a>
             </div>
+
           </li>
         </template>
 

@@ -19,6 +19,8 @@ class ProjectContent implements OnInit {
   @Input()
   Project project;
 
+  var preview_src;
+
   bool previewVisible = false;
 
   final FirebaseService fbService;
