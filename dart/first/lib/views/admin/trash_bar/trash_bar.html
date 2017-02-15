@@ -4,5 +4,13 @@
     <p class="trash-label">Papierkorb</p>
     <i class="trash-icon material-icons">delete</i>
     <i class="trash-icon-close material-icons">close</i>
+
+  </div>
+  <div class="trash-inner">
+    <ul>
+      <template  ngFor let-project [ngForOf]="fbService.projects">
+        <li *ngIf="project?.isDeleted==true">{{project.name}}</li>
+      </template>
+    </ul>
   </div>
 </div>
