@@ -20,58 +20,23 @@
     </div>
     <div class="img-list-wrapper">
       <ul class="img-list">
-        <li>
-          <div class="img-thumb">
+        <template ngFor let-image [ngForOf]="fbService.images">
 
-          </div>
-          <div class="img-name">
-            <span>test123.jpg</span>
-          </div>
-          <div class="icon-wrapper">
-            <a><i class="material-icons">filter</i></a>
-            <a><i class="material-icons">visibility</i></a>
-            <a><i class="material-icons">delete</i></a>
-          </div>
-        </li>
-        <li>
-          <div class="img-thumb">
+          <li>
+            <div class="img-thumb">
+              <img src="{{image.imgPath}}" height="30px" >
+            </div>
+            <div class="img-name">
+              <span>{{image.imgName}}</span>
+            </div>
+            <div class="icon-wrapper">
+              <a><i class="material-icons">filter</i></a>
+              <a><i class="material-icons">visibility</i></a>
+              <a><i class="material-icons">delete</i></a>
+            </div>
+          </li>
+        </template>
 
-          </div>
-          <div class="img-name">
-            <span>Bild_klein12.jpg</span>
-          </div>
-          <div class="icon-wrapper">
-            <a><i class="material-icons">filter</i></a>
-            <a><i class="material-icons">visibility</i></a>
-            <a><i class="material-icons">delete</i></a>
-          </div>
-        </li>
-        <li>
-          <div class="img-thumb">
-
-          </div>
-          <div class="img-name">
-            <span>test123.jpg</span>
-          </div>
-          <div class="icon-wrapper">
-            <a><i class="material-icons">filter</i></a>
-            <a><i class="material-icons">visibility</i></a>
-            <a><i class="material-icons">delete</i></a>
-          </div>
-        </li>
-        <li>
-          <div class="img-thumb">
-
-          </div>
-          <div class="img-name">
-            <span>test123.jpg</span>
-          </div>
-          <div class="icon-wrapper">
-            <a><i class="material-icons">filter</i></a>
-            <a><i class="material-icons">visibility</i></a>
-            <a><i class="material-icons">delete</i></a>
-          </div>
-        </li>
 
       </ul>
     </div>

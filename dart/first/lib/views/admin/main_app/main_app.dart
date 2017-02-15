@@ -13,7 +13,6 @@ import 'package:first/models/tooltip.dart';
 import 'package:first/services/tooltip_service.dart';
 import 'package:first/services/firebase_service.dart';
 
-
 @Component(
     templateUrl: 'main_app.html',
     selector: 'main-app',
@@ -21,8 +20,6 @@ import 'package:first/services/firebase_service.dart';
     directives: const [AppHeader, SideBarLeft, ProjectContent, SideBarRight, TrashBar],
     providers: const [FirebaseService, TooltipService]
 )
-
-
 
 class MainApp implements AfterViewInit {
 
@@ -32,13 +29,13 @@ class MainApp implements AfterViewInit {
 
   var isLoading = false;
 
-  void getId(Project project) {
+  Future getId(Project project) async {
     if (fbService.user!=null) {
       selectedProject = project;
-
+      var images = await fbService.getImages(project.key);
     }
-    print('hallo jetzt wissen wirs');
   }
+
 
   isItLoading(status) {
     isLoading = status;

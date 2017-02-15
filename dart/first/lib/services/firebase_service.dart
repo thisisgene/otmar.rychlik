@@ -3,8 +3,10 @@ import 'dart:async';
 
 import 'package:angular2/core.dart';
 import 'package:firebase/firebase.dart' as fb;
+import 'package:uuid/uuid.dart';
 
 import 'package:first/models/project.dart';
+import 'package:first/models/image.dart';
 
 
 @Injectable()
@@ -13,10 +15,14 @@ class FirebaseService {
   fb.Database _fbDatabase;
   fb.Storage _fbStorage;
   fb.DatabaseReference _fbRefProjects;
+  fb.DatabaseReference _fbRefImages;
 
   fb.User user;
 
   List<Project> projects;
+  List<Image> images;
+
+  var uuid = new Uuid();
 
 
   FirebaseService() {
@@ -31,6 +37,7 @@ class FirebaseService {
 
     _fbDatabase = fb.database();
     _fbRefProjects = _fbDatabase.ref("projects");
+    _fbRefImages = _fbDatabase.ref("images");
 
     _fbStorage = fb.storage();
   }
@@ -64,6 +71,16 @@ class FirebaseService {
     }
   }
 
+  Future addImage(Image newImage) async {
+    try {
+
+      await _fbRefImages.push(newImage.toMap());
+    }
+    catch (error) {
+      print("$runtimeType::addProject() -- $error");
+    }
+  }
+
   Future updateProject(String key, String newContent, String newContentHtml, String layoutClass, bool isVisible) async {
     try {
       await _fbRefProjects.child(key).update({
@@ -90,56 +107,102 @@ class FirebaseService {
     }
   }
 
-  Future uploadImage(File file, Project project) async {
-    saveImageToProject(file.name, project.key);
+  Future buildImage(val) async{
 
-//    print(file.name);
-//    fb.StorageReference fbRefImage =
-//    _fbStorage.ref("${project.name}/${new DateTime.now()}/${file.name}");
-//
-//    print(fbRefImage);
-//
-//
-//    fb.UploadTask task =
-//    fbRefImage.put(file, new fb.UploadMetadata(contentType: file.type));
-//
-//    StreamSubscription sub;
-//
-//    sub = task.onStateChanged.listen((fb.UploadTaskSnapshot snapshot) {
-//      print("Uploading Image -- Transfered ${snapshot.bytesTransferred}/${snapshot.totalBytes}...");
-//
-//      if (snapshot.bytesTransferred == snapshot.totalBytes) {
-//        sub.cancel();
-//      }
-//    }, onError: (fb.FirebaseError error) {
-//      print(error.message);
-//    });
-//
-//    try {
-//      fb.UploadTaskSnapshot snapshot = await task.future;
-//
-//      if (snapshot.state == fb.TaskState.SUCCESS) {
-//        saveImageToProject(file.name, project.key);
-//      }
-//    } catch (error) {
-//      print(error);
-//    }
+    try {
+
+        Image img = new Image(val[imgId], val[imgName], val[imgPath], val[imgParent]);
+        images.add(img);
+        print(val[imgName]);
+
+    } catch (e){
+      print(e);
+
+    }
   }
 
-  Future saveImageToProject(String filename, String key) async {
-    var projectRef = _fbRefProjects.child(key).startAt(priority: (snapshotPriority == null) ? null : snapshotPriority).limit(pageSize+1);
-    await projectRef.once('value').then((snapshot) {
-      snapshot.forEach((itemSnapshot) {
-        print(itemSnapshot);
-      });
+  Future getImages(String parentKey) async {
+    var imgRef;
+    var i = 0;
+    images = [];
+
+
+    _fbRefImages.onChildAdded.listen((e) {
+      fb.DataSnapshot snapshot = e.snapshot;
+      var val = snapshot.val();
+      if (val[imgParent] == parentKey) {
+        buildImage(val);
+      }
     });
 
-    //    try {
-//      await _fbRefProjects.child(key);
-//
-//    } catch (e) {
-//      print("Error in deleting $key: $e");
-//    }
+
+    try {
+//    await findImage(imgRef);
+
+    } catch (e) {
+      print(e);
+    }
+
+
+  }
+
+  Future uploadImage(File file, Project project) async {
+    String fileName = file.name;
+    String fileId = uuid.v1();
+    String filePath = "img/${fileId}/${fileName}";
+
+    fb.StorageReference fbRefImage = _fbStorage.ref(filePath);
+
+
+
+    fb.UploadTask task =
+    fbRefImage.put(file, new fb.UploadMetadata(contentType: file.type));
+
+    StreamSubscription sub;
+
+    sub = task.onStateChanged.listen((fb.UploadTaskSnapshot snapshot) {
+      print("Uploading Image -- Transfered ${snapshot.bytesTransferred}/${snapshot.totalBytes}...");
+
+      if (snapshot.bytesTransferred == snapshot.totalBytes) {
+        sub.cancel();
+      }
+    }, onError: (fb.FirebaseError error) {
+      print(error.message);
+    });
+
+    try {
+      fb.UploadTaskSnapshot snapshot = await task.future;
+
+      if (snapshot.state == fb.TaskState.SUCCESS) {
+        saveImageToProject(fileId, fileName, snapshot.downloadURL.toString(), project.key);
+      }
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  Future saveImageToProject(String fileId, String fileName, String path, String key) async {
+    var projectRef = _fbRefProjects.child(key);
+    Image newImage = new Image(fileId, fileName, path, key);
+    addImage(newImage);
+    try {
+      await projectRef.once('value').then((e) {
+        var val = e.snapshot.val();
+        List imgList = val[imageList];
+        if (imgList!=null) {
+          imgList.add(fileId);
+
+        }
+        else {
+          imgList = [fileId];
+        }
+        projectRef.update({"imageList": imgList});
+      });
+
+    } catch (e) {
+      print("Error $key: $e");
+    }
+
   }
 
 

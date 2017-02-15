@@ -1,3 +1,5 @@
+import 'package:first/models/image.dart';
+
 const String name = "name";
 const String contentTextMD = "contentTextMD";
 const String contentTextHtml = "contentTextHtml";
@@ -15,7 +17,7 @@ class Project {
   bool hasParent;
   bool hasChildren;
   String layoutClass;
-  List imageList;
+  List<Image> imageList;
   bool isVisible;
   bool isDeleted;
   String key;
