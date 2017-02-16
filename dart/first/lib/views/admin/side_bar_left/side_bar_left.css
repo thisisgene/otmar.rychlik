@@ -144,11 +144,12 @@
 .edit-icons .confirm-delete-box {
   position: absolute;
   top: -4px;
+  font-size: .8em;
   padding: 4px 8px;
   background: #ffaaaa;
   border: 1px solid #ff6666;
   border-radius: 4px;
-  width: 140px;
+  width: 130px;
   color: #111;
   -webkit-transition: opacity 100ms ease-in-out;
   -moz-transition: opacity 100ms ease-in-out;
