@@ -17,7 +17,16 @@
 
             <div class="edit-icons">
               <i class="icon icon-edit material-icons" (click)="editProject(project)">create</i>
-              <i class="icon icon-delete material-icons" (click)="deleteProject(project.key)">delete</i>
+              <i class="icon icon-delete material-icons" (click)="openDeleteDialog($event)">delete</i>
+              <div class="confirm-delete-box">
+                <div class="confirm-delete-box__inner">
+                  <div class="confirm-delete-box__inner--dialog">
+                    <a (click)="deleteProject(project.key)"><i class="material-icons">check</i></a>
+                    <a (click)="closeDeleteDialog($event)"><i class="material-icons">clear</i></a>
+                  </div>
+                  <span>Really delete?</span>
+                </div>
+              </div>
               <i class="icon icon-add material-icons" (click)="addSubProject(project, this)">add_box</i>
             </div>
           </div>

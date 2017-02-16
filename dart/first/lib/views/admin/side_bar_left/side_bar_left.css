@@ -99,7 +99,7 @@
   position: relative;
   top: .1rem;
   margin-left: .4rem;
-  opacity: 0;
+  opacity: 1;
 }
 .project-list li .list-main-content:hover .edit-icons {
   opacity: 1;
@@ -113,6 +113,45 @@
 .edit-icons .icon-delete:hover {
   color: #f66;
 }
+
+.edit-icons .confirm-delete-box {
+  position: absolute;
+  top: -4px;
+  padding: 4px 8px;
+  background: #ffaaaa;
+  border: 1px solid #ff6666;
+  border-radius: 4px;
+  width: 140px;
+  color: #111;
+  -webkit-transition: opacity 100ms ease-in-out;
+  -moz-transition: opacity 100ms ease-in-out;
+  -ms-transition: opacity 100ms ease-in-out;
+  -o-transition: opacity 100ms ease-in-out;
+  transition: opacity 100ms ease-in-out;
+  display: none;
+}
+.edit-icons .confirm-delete-box.box-active {
+  display: inline-block;
+}
+
+.edit-icons .confirm-delete-box .confirm-delete-box__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.edit-icons .confirm-delete-box .confirm-delete-box__inner .confirm-delete-box__inner--dialog {
+  display: flex;
+  flex-direction: row;
+}
+.edit-icons .confirm-delete-box .confirm-delete-box__inner .confirm-delete-box__inner--dialog a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.edit-icons .confirm-delete-box .confirm-delete-box__inner .confirm-delete-box__inner--dialog a:hover {
+  color: #66ff66;
+}
+
 .edit-icons .icon-add:hover {
   color: #66f;
 }

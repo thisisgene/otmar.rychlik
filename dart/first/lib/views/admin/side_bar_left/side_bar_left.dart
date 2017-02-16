@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:html';
 
 import 'package:angular2/angular2.dart';
+
 import 'package:first/views/admin/project_content/project_content.dart';
 
 import 'package:first/models/project.dart';
@@ -18,7 +19,7 @@ import 'package:first/services/firebase_service.dart';
 class SideBarLeft implements OnInit {
 
   bool isClassVisible = false;
-
+  bool deleteConfirm;
   String title = 'Otmar Rychlik';
 
   List<Project> projects;
@@ -50,10 +51,22 @@ class SideBarLeft implements OnInit {
     }
   }
 
-  void deleteProject(key) {
+  openDeleteDialog(Event e) {
+    Element eli = e.target;
+    eli.nextElementSibling.classes.add('box-active');
+  }
+
+  closeDeleteDialog(Event e) {
+    Element eli2 = e.target;
+    print(eli2);
+    eli2.parent.parent.parent.parent.classes.remove('box-active');
+  }
+
+  deleteProject(key) async {
     Element project = querySelector("#project$key");
     project.remove();
     fbService.deleteProject(key);
+
   }
 
   void selectProject(project) {
