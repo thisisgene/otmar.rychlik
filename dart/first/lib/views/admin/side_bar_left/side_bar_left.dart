@@ -143,7 +143,8 @@ class SideBarLeft implements OnInit {
 
       }
       if (target.classes.contains('icon-hasChildren')){
-        target.parent.parent.classes.toggle('is-open');
+        target.parent.classes.toggle('is-open');
+        target.classes.toggle('arrow-active');
       }
     });
   }
