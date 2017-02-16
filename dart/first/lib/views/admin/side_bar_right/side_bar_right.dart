@@ -36,7 +36,7 @@ class SideBarRight implements AfterViewInit {
       SideBarLeft this.sideBarLeft
       );
 
-  updateProject(key) async {
+  updateProject(String key, Project project) async {
 
     if (key!=null) {
       Element spinScreen = querySelector('.spinning-screen');
@@ -49,7 +49,7 @@ class SideBarRight implements AfterViewInit {
       newContent = contentText.value;
       newContentHtml = markdown.markdownToHtml(newContent);
       print(newContentHtml);
-      await fbService.updateProject(key, newContent, newContentHtml, layoutClass, projectVisible);
+      await fbService.updateProject(key, project.name, newContent, newContentHtml, layoutClass, projectVisible);
 
       spinScreen.classes.remove('is-loading');
 

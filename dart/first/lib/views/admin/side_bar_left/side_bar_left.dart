@@ -20,6 +20,7 @@ class SideBarLeft implements OnInit {
 
   bool isClassVisible = false;
   bool subInputExist = false;
+  bool editNameExist = false;
   String title = 'Otmar Rychlik';
 
   List<Project> projects;
@@ -45,6 +46,39 @@ class SideBarLeft implements OnInit {
     }
   }
 
+  editProject(Project project, Event e) {
+    if (!editNameExist) {
+      String newName;
+      Element thisElement = e.target;
+      Element projectElement = thisElement.parent.previousElementSibling;
+      String currentName = projectElement.text;
+      InputElement nameInput = new InputElement();
+      nameInput.value = currentName;
+      projectElement.children.add(nameInput);
+      nameInput.focus();
+      nameInput.select();
+      subInputExist = true;
+      nameInput.onBlur.listen((_) {
+        nameInput.remove();
+        subInputExist = false;
+      });
+      nameInput.onKeyUp.listen((KeyboardEvent e) {
+        newName = nameInput.value;
+        if (e.keyCode == KeyCode.ENTER) {
+          if (newName!='') {
+            projectElement.text = newName;
+            fbService.updateProject(project.key, newName, project.contentTextMD, project.contentTextHtml, project.layoutClass, project.isVisible);
+            nameInput.remove();
+          }
+        }
+        if (e.keyCode == KeyCode.ESC) {
+          nameInput.remove();
+          editNameExist = false;
+        }
+      });
+    }
+  }
+
   openDeleteDialog(Event e) {
     Element eli = e.target;
     eli.nextElementSibling.classes.add('box-active');
@@ -61,6 +95,36 @@ class SideBarLeft implements OnInit {
     project.remove();
     fbService.deleteProject(key);
 
+  }
+
+  addSubProject(Project project, Event e) {
+    if (!subInputExist) {
+      String subName;
+      Element thisElement = e.target;
+      Element projectElement = thisElement.parent;
+      InputElement nameInput = new InputElement();
+      projectElement.children.add(nameInput);
+      nameInput.focus();
+      subInputExist = true;
+      nameInput.onBlur.listen((_) {
+        nameInput.remove();
+        subInputExist = false;
+      });
+      nameInput.onKeyUp.listen((KeyboardEvent e) {
+        subName = nameInput.value;
+        if (e.keyCode == KeyCode.ENTER) {
+          if (subName!='') {
+            fbService.addProject(subName, true, project.key, project.name);
+            fbService.projectHasChild(project.key, true);
+            nameInput.remove();
+          }
+        }
+        if (e.keyCode == KeyCode.ESC) {
+          nameInput.remove();
+          subInputExist = false;
+        }
+      });
+    }
   }
 
   void selectProject(project) {
@@ -84,39 +148,7 @@ class SideBarLeft implements OnInit {
     });
   }
 
-  Future submitSubProject(String name, Project project) {
-    print(name);
-  }
 
-  void addSubProject(Project project, Event e) {
-    if (!subInputExist) {
-      String subName;
-      Element thisElement = e.target;
-      Element projectElement = thisElement.parent;
-      InputElement nameInput = new InputElement();
-      projectElement.children.add(nameInput);
-      nameInput.focus();
-      subInputExist = true;
-      nameInput.onBlur.listen((_) {
-        nameInput.remove();
-        subInputExist = false;
-      });
-      nameInput.onKeyUp.listen((KeyboardEvent e) {
-        subName = nameInput.value;
-        if (e.keyCode == KeyCode.ENTER) {
-          if (subName!='') {
-            submitSubProject(subName, project);
-            fbService.addProject(subName, true, project.key, project.name);
-            fbService.projectHasChild(project.key, true);
-          }
-        }
-        if (e.keyCode == KeyCode.ESC) {
-          nameInput.remove();
-          subInputExist = false;
-        }
-      });
-    }
-  }
 
   final FirebaseService fbService;
 

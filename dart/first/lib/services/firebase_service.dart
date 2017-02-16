@@ -81,9 +81,10 @@ class FirebaseService {
     }
   }
 
-  Future updateProject(String key, String newContent, String newContentHtml, String layoutClass, bool isVisible) async {
+  Future updateProject(String key, String newName, String newContent, String newContentHtml, String layoutClass, bool isVisible) async {
     try {
       await _fbRefProjects.child(key).update({
+        "name"            : newName,
         "contentTextMD"   : newContent,
         "contentTextHtml" : newContentHtml,
         "layoutClass"     : layoutClass,
