@@ -19,7 +19,7 @@ import 'package:first/services/firebase_service.dart';
 class SideBarLeft implements OnInit {
 
   bool isClassVisible = false;
-  bool deleteConfirm;
+  bool subInputExist = false;
   String title = 'Otmar Rychlik';
 
   List<Project> projects;
@@ -30,24 +30,18 @@ class SideBarLeft implements OnInit {
   @Output() EventEmitter<String> myEvent = new EventEmitter();
 
 
-  void addProject(type, {project}) {
+  void addProject() {
 
     InputElement projectInput = querySelector('.add-project-input');
     String projectName = projectInput.value;
-    print(projectName);
     if (projectName != '') {
-
+      bool hasParent = false;
       String parentKey = '';
       String parentName = '';
 
-      bool hasParent = false;
-      if (type != 'main') hasParent = true;
-      if (project != null) {
-        parentKey = project.key;
-        parentName = project.name;
-      }
+
       fbService.addProject(projectName, hasParent, parentKey, parentName);
-      print('hallo das ist '+projectName);
+
     }
   }
 
@@ -57,9 +51,9 @@ class SideBarLeft implements OnInit {
   }
 
   closeDeleteDialog(Event e) {
-    Element eli2 = e.target;
-    print(eli2);
-    eli2.parent.parent.parent.parent.classes.remove('box-active');
+    Element eli = e.target;
+    print(eli);
+    eli.parent.parent.parent.parent.classes.remove('box-active');
   }
 
   deleteProject(key) async {
@@ -90,11 +84,38 @@ class SideBarLeft implements OnInit {
     });
   }
 
+  Future submitSubProject(String name, Project project) {
+    print(name);
+  }
 
-  void addSubProject(Project project, Element thisElement) {
-    Element projectElement = thisElement.parent;
-    InputElement nameInput = new InputElement();
-    projectElement.children.add(nameInput);
+  void addSubProject(Project project, Event e) {
+    if (!subInputExist) {
+      String subName;
+      Element thisElement = e.target;
+      Element projectElement = thisElement.parent;
+      InputElement nameInput = new InputElement();
+      projectElement.children.add(nameInput);
+      nameInput.focus();
+      subInputExist = true;
+      nameInput.onBlur.listen((_) {
+        nameInput.remove();
+        subInputExist = false;
+      });
+      nameInput.onKeyUp.listen((KeyboardEvent e) {
+        subName = nameInput.value;
+        if (e.keyCode == KeyCode.ENTER) {
+          if (subName!='') {
+            submitSubProject(subName, project);
+            fbService.addProject(subName, true, project.key, project.name);
+            fbService.projectHasChild(project.key, true);
+          }
+        }
+        if (e.keyCode == KeyCode.ESC) {
+          nameInput.remove();
+          subInputExist = false;
+        }
+      });
+    }
   }
 
   final FirebaseService fbService;

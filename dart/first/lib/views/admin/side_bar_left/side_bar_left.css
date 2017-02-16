@@ -99,7 +99,7 @@
   position: relative;
   top: .1rem;
   margin-left: .4rem;
-  opacity: 1;
+  opacity: 0;
 }
 .project-list li .list-main-content:hover .edit-icons {
   opacity: 1;

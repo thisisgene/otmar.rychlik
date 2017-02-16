@@ -3,7 +3,7 @@
 
   <div class="sidebar-left--input">
     <input class="add-project-input" type="text">
-    <button (click)="addProject('main')">
+    <button (click)="addProject()">
       <i class="material-icons">add</i>
     </button>
   </div>
@@ -27,31 +27,48 @@
                   <span>Really delete?</span>
                 </div>
               </div>
-              <i class="icon icon-add material-icons" (click)="addSubProject(project, this)">add_box</i>
+              <i class="icon icon-add material-icons" (click)="addSubProject(project, $event)">add_box</i>
             </div>
           </div>
           <ul *ngIf="project.hasChildren" class="project-list sub-list">
             <template ngFor let-subproject [ngForOf]="fbService.projects">
-              <li *ngIf="subproject.parentId==project.id && !project.isDeleted" [ngClass]="subproject.hasChildren ? 'has-sub-list' : ''">
+              <li id="project{{subproject.key}}" *ngIf="subproject.parentId==project.key && !subproject.isDeleted" [ngClass]="subproject.hasChildren ? 'has-sub-list' : ''">
                 <div class="list-main-content">
                   <i class="icon-hasChildren material-icons" *ngIf="subproject.hasChildren">add_circle_outline</i>
                   <a id={{subproject.key}} class="project-element" (click)="selectProject(subproject)">{{subproject.name}}</a>
                   <div class="edit-icons">
-                    <i class="icon icon-edit material-icons">create</i>
-                    <i class="icon icon-delete material-icons">delete</i>
-                    <i class="icon icon-add material-icons">add_box</i>
+                    <i class="icon icon-edit material-icons" (click)="editProject(subproject)">create</i>
+                    <i class="icon icon-delete material-icons" (click)="openDeleteDialog($event)">delete</i>
+                    <div class="confirm-delete-box">
+                      <div class="confirm-delete-box__inner">
+                        <div class="confirm-delete-box__inner--dialog">
+                          <a (click)="deleteProject(subproject.key)"><i class="material-icons">check</i></a>
+                          <a (click)="closeDeleteDialog($event)"><i class="material-icons">clear</i></a>
+                        </div>
+                        <span>Really delete?</span>
+                      </div>
+                    </div>
+                    <i class="icon icon-add material-icons" (click)="addSubProject(subproject, $event)">add_box</i>
                   </div>
                 </div>
                 <ul *ngIf="subproject.hasChildren" class="project-list sub-list">
                   <template ngFor let-subsubproject [ngForOf]="fbService.projects">
-                    <li *ngIf="subsubproject.parentId==subproject.id && !project.isDeleted">
+                    <li id="project{{subsubproject.key}}" *ngIf="subsubproject.parentId==subproject.key && !subsubproject.isDeleted">
                       <div class="list-main-content">
                         <i class="icon-hasChildren material-icons" *ngIf="subsubproject.hasChildren">add_circle_outline</i>
                         <a id={{subsubproject.key}} class="project-element" (click)="selectProject(subsubproject)">{{subsubproject.name}}</a>
                         <div class="edit-icons">
-                          <i class="icon icon-edit material-icons">create</i>
-                          <i class="icon icon-delete material-icons">delete</i>
-                          <i class="icon icon-add material-icons">add_box</i>
+                          <i class="icon icon-edit material-icons" (click)="editProject(subsubproject)">create</i>
+                          <i class="icon icon-delete material-icons" (click)="openDeleteDialog($event)">delete</i>
+                          <div class="confirm-delete-box">
+                            <div class="confirm-delete-box__inner">
+                              <div class="confirm-delete-box__inner--dialog">
+                                <a (click)="deleteProject(subsubproject.key)"><i class="material-icons">check</i></a>
+                                <a (click)="closeDeleteDialog($event)"><i class="material-icons">clear</i></a>
+                              </div>
+                              <span>Really delete?</span>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </li>
