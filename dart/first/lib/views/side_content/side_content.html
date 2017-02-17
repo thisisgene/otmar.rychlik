@@ -2,12 +2,12 @@
   <div class="menu-container">
     <a class="back-arrow" (click)="goBack()">back</a>
     <ul class="menu-list">
-      <template ngFor let-project [ngForOf]="projects">
+      <template ngFor let-project [ngForOf]="fbService.projects">
 
         <li class="menu-item" *ngIf="!project.hasParent" [ngClass]="project.hasChildren ? 'has-sub-list' : ''">
           <div class="main-item">
-            <a id={{project.id}} class="project-element main-link" (click)="selectProject(project)">{{project.name}}</a>
-            <span class="update">{{project.lastEdit}}</span>
+            <a id={{project.key}} class="project-element main-link" (click)="selectProject(project)">{{project.name}}</a>
+            <span class="update">{{project.name}}</span>
           </div>
         </li>
       </template>

@@ -1,9 +1,11 @@
 <div id="main-container">
   <app-header></app-header>
-  <main>
+  <main *ngIf="fbService.projects != null">
     <side-content (myEvent)="getId($event)"></side-content>
     <center-content [project]="selectedProject"></center-content>
   </main>
-
+  <main *ngIf="fbService.projects == null">
+  <p>Ladet noch</p>
+  </main>
   <app-footer><p>ohhlasdl</p></app-footer>
 </div>

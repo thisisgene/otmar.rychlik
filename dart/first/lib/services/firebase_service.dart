@@ -48,6 +48,7 @@ class FirebaseService {
       projects = [];
 
       _fbRefProjects.onChildAdded.listen(_newProject);
+//      _fbRefProjects.onChildChanged.listen(_newProject);        make it happen!
 
     }
   }
@@ -57,6 +58,7 @@ class FirebaseService {
     var val = event.snapshot.val();
     Project project = new Project(val[name], val[contentTextMD], val[contentTextHtml], val[hasParent], val[parentId], val[hasChildren], val[layoutClass], val[imageList], val[isVisible], val[isDeleted], key);
     projects.add(project);
+    print(projects.length);
   }
 
 

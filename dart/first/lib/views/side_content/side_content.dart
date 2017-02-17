@@ -1,30 +1,26 @@
 import 'package:angular2/angular2.dart';
+import 'package:angular2/router.dart';
 
 import 'dart:async';
-
 import 'dart:html';
 
-
 import 'package:first/models/project.dart';
-import 'package:first/services/project_service.dart';
+import 'package:first/services/fb_no_user_service.dart';
 import 'package:first/views/center_content/center_content.dart';
 
 @Component(selector: 'side-content',
     templateUrl: 'side_content.html',
     styleUrls: const ['side_content.css'],
-    directives: const [CenterContent],
-    providers: const [ProjectService]
+    directives: const [ROUTER_DIRECTIVES, CenterContent],
+    providers: const [ROUTER_PROVIDERS]
 )
-class SideContent implements OnInit {
+class SideContent {
 
   List<Project> projects;
+  Project selectedProject;
 
-  final ProjectService _projectService;
-  SideContent(this._projectService);
-
-  Future<Null> getProjects() async {
-    projects = await _projectService.getProjects();
-  }
+  final FbNoUserService fbService;
+  SideContent(this.fbService);
 
   @Output() EventEmitter<String> myEvent = new EventEmitter();
 
@@ -33,39 +29,12 @@ class SideContent implements OnInit {
     print(project.name);
   }
 
-  void listenToClick() {
-
-    querySelector('.menu-list').onClick.listen((MouseEvent e) {
-
-      Element target = e.target;
-      ElementList allProjects = querySelectorAll('.project-element');
-
-      if (target.classes.contains('project-element')){
-        querySelectorAll('.active').classes.remove('active');
-        target.classes.add('active');
-
-
-        for (Element project in allProjects) {
-          print(project);
-          if (project != target) {
-            project.parent.parent.classes.add('hidden');
-          }
-        }
-
-      }
-      if (target.classes.contains('icon-hasChildren')){
-        target.parent.parent.classes.toggle('is-open');
-      }
-    });
+  void onSelect(Project project) {
+    selectedProject = project;
   }
 
   void goBack(id) {
     print(id);
-  }
-
-  void ngOnInit() {
-    getProjects();
-    listenToClick();
   }
 
 }
