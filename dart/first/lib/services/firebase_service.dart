@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:angular2/core.dart';
 import 'package:firebase/firebase.dart' as fb;
 import 'package:uuid/uuid.dart';
+import 'package:intl/intl.dart';
 
 import 'package:first/models/project.dart';
 import 'package:first/models/image.dart';
@@ -56,7 +57,7 @@ class FirebaseService {
   void _newProject(fb.QueryEvent event) {
     String key = event.snapshot.key;
     var val = event.snapshot.val();
-    Project project = new Project(val[name], val[contentTextMD], val[contentTextHtml], val[hasParent], val[parentId], val[hasChildren], val[layoutClass], val[imageList], val[isVisible], val[isDeleted], key);
+    Project project = new Project(val[name], val[contentTextMD], val[contentTextHtml], val[hasParent], val[parentId], val[hasChildren], val[layoutClass], val[imageList], val[lastEdit], val[isVisible], val[isDeleted], key);
     projects.add(project);
     print(projects.length);
   }
@@ -64,8 +65,11 @@ class FirebaseService {
 
 
   Future addProject(String name, bool hasParent, String parentId, String parentName) async {
+
+    var formatter = new DateFormat('dd.MM.yyyy');
+    String currentDate = formatter.format(new DateTime.now());
     try {
-      Project project = new Project(name, null, null, hasParent, parentId, false, "layout_img", [], true, false);
+      Project project = new Project(name, null, null, hasParent, parentId, false, "layout_img", [], currentDate, true, false);
       await _fbRefProjects.push(project.toMap());
     }
     catch (error) {
@@ -84,12 +88,15 @@ class FirebaseService {
   }
 
   Future updateProject(String key, String newName, String newContent, String newContentHtml, String layoutClass, bool isVisible) async {
+    var formatter = new DateFormat('dd.MM.yyyy');
+    String currentDate = formatter.format(new DateTime.now());
     try {
       await _fbRefProjects.child(key).update({
         "name"            : newName,
         "contentTextMD"   : newContent,
         "contentTextHtml" : newContentHtml,
         "layoutClass"     : layoutClass,
+        "lastEdit"        : currentDate,
         "isVisible"       : isVisible
       });
 

@@ -8,6 +8,7 @@ const String parentId = "parentId";
 const String hasChildren = "hasChildren";
 const String layoutClass = "layoutClass";
 const String imageList = "imageList";
+const String lastEdit = "lastEdit";
 const String isVisible = "isVisible";
 const String isDeleted = "isDeleted";
 
@@ -20,6 +21,7 @@ class Project {
   bool hasChildren;
   String layoutClass;
   List<Image> imageList;
+  String lastEdit;
   bool isVisible;
   bool isDeleted;
   String key;
@@ -33,6 +35,7 @@ class Project {
     this.hasChildren,
     this.layoutClass,
     this.imageList,
+    this.lastEdit,
     this.isVisible,
     this.isDeleted,
     this.key]
@@ -48,6 +51,7 @@ class Project {
     "hasChildren": hasChildren,
     "layoutClass": layoutClass,
     "imageList": imageList,
+    "lastEdit": lastEdit,
     "isVisible": isVisible,
     "isDeleted": isDeleted
   };

@@ -7,7 +7,7 @@
         <li class="menu-item" *ngIf="!project.hasParent" [ngClass]="project.hasChildren ? 'has-sub-list' : ''">
           <div class="main-item">
             <a id={{project.key}} class="project-element main-link" (click)="selectProject(project)">{{project.name}}</a>
-            <span class="update">{{project.name}}</span>
+            <span class="update">{{project.lastEdit}}</span>
           </div>
         </li>
       </template>

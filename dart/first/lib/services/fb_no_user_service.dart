@@ -71,6 +71,7 @@ class FbNoUserService {
           val[hasChildren],
           val[layoutClass],
           val[imageList],
+          val[lastEdit],
           val[isVisible],
           val[isDeleted],
           key);
