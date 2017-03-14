@@ -4,13 +4,14 @@
     <ul class="menu-list">
       <template ngFor let-project [ngForOf]="fbService.projects">
 
-        <li class="menu-item" *ngIf="!project.hasParent" [ngClass]="project.hasChildren ? 'has-sub-list' : ''">
+        <li class="menu-item" id="li{{project.key}}" [ngClass]="project.hasParent ? 'hidden' : ''" [ngClass]="project.hasChildren ? 'has-sub-list' : ''">
           <div class="main-item">
-            <a id={{project.key}} class="project-element main-link" (click)="selectProject(project)">{{project.name}}</a>
+            <a id={{project.key}} [routerLink]="['Site', {key: project.key}]" class="project-element main-link" (click)="selectProject(project, project.key)">{{project.name}}</a>
             <span class="update">{{project.lastEdit}}</span>
           </div>
         </li>
       </template>
     </ul>
   </div>
+
 </div>

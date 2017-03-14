@@ -1,5 +1,6 @@
 import 'dart:html';
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:angular2/core.dart';
 import 'package:firebase/firebase.dart' as fb;
@@ -57,7 +58,7 @@ class FirebaseService {
   void _newProject(fb.QueryEvent event) {
     String key = event.snapshot.key;
     var val = event.snapshot.val();
-    Project project = new Project(val[name], val[contentTextMD], val[contentTextHtml], val[hasParent], val[parentId], val[hasChildren], val[layoutClass], val[imageList], val[lastEdit], val[isVisible], val[isDeleted], key);
+    Project project = new Project(val[name], val[urlName], val[contentTextMD], val[contentTextHtml], val[hasParent], val[parentId], val[hasChildren], val[layoutClass], val[imageList], val[lastEdit], val[isVisible], val[isDeleted], key);
     projects.add(project);
     print(projects.length);
   }
@@ -67,9 +68,13 @@ class FirebaseService {
   Future addProject(String name, bool hasParent, String parentId, String parentName) async {
 
     var formatter = new DateFormat('dd.MM.yyyy');
+
+    var sani = const HtmlEscape();
+    String urlName = Uri.encodeComponent(name);
+
     String currentDate = formatter.format(new DateTime.now());
     try {
-      Project project = new Project(name, null, null, hasParent, parentId, false, "layout_img", [], currentDate, true, false);
+      Project project = new Project(name, urlName, null, null, hasParent, parentId, false, "layout_menu", [], currentDate, true, false);
       await _fbRefProjects.push(project.toMap());
     }
     catch (error) {

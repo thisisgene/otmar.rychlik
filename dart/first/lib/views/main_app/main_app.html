@@ -2,7 +2,10 @@
   <app-header></app-header>
   <main *ngIf="fbService.projects != null">
     <side-content (myEvent)="getId($event)"></side-content>
-    <center-content [project]="selectedProject"></center-content>
+    <!--<a [routerLink]="['Site']">Hallo ein Link</a>-->
+    <router-outlet></router-outlet>
+
+    <!--<center-content [project]="selectedProject"></center-content>-->
   </main>
   <main *ngIf="fbService.projects == null">
   <p>Ladet noch</p>

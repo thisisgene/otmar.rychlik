@@ -11,9 +11,13 @@ import 'package:first/views/center_content/center_content.dart';
 @Component(selector: 'side-content',
     templateUrl: 'side_content.html',
     styleUrls: const ['side_content.css'],
-    directives: const [ROUTER_DIRECTIVES, CenterContent],
-    providers: const [ROUTER_PROVIDERS]
+    directives: const [ROUTER_DIRECTIVES, CenterContent]
 )
+//@RouteConfig(const [
+//  const Route(path: '/site/:key', name: 'Site', component: CenterContent)
+//])
+
+
 class SideContent {
 
   List<Project> projects;
@@ -22,19 +26,25 @@ class SideContent {
   final FbNoUserService fbService;
   SideContent(this.fbService);
 
+
+
   @Output() EventEmitter<String> myEvent = new EventEmitter();
 
-  void selectProject(project) {
+  void selectProject(project, key) {
     myEvent.emit(project);
-    print(project.name);
+    LIElement li_project = querySelector('#li$key');
+    li_project.classes.add('active');
+    querySelector('.back-arrow').classes.add('show');
   }
 
   void onSelect(Project project) {
     selectedProject = project;
+
+
   }
 
-  void goBack(id) {
-    print(id);
+  void goBack() {
+    window.history.back();
   }
 
 }

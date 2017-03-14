@@ -1,6 +1,7 @@
 import 'package:first/models/image.dart';
 
 const String name = "name";
+const String urlName = "urlName";
 const String contentTextMD = "contentTextMD";
 const String contentTextHtml = "contentTextHtml";
 const String hasParent = "hasParent";
@@ -14,6 +15,7 @@ const String isDeleted = "isDeleted";
 
 class Project {
   String name;
+  String urlName;
   String contentTextMD;
   String contentTextHtml;
   bool hasParent;
@@ -28,6 +30,7 @@ class Project {
 
   Project(
     this.name,
+    this.urlName,
     [this.contentTextMD,
     this.contentTextHtml,
     this.hasParent,
@@ -44,6 +47,7 @@ class Project {
   Map toMap() => {
 
     "name": name,
+    "urlName": urlName,
     "contentTextMD": contentTextMD,
     "contentTextHtml": contentTextHtml,
     "hasParent": hasParent,

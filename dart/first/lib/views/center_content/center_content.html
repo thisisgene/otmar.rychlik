@@ -2,3 +2,8 @@
 <div *ngIf="project != null">
   <textarea>{{project.contentTextMD}}</textarea>
 </div>
+<ul>
+  <li *ngFor="let childProject of childProjects">
+    {{childProject?.name}}
+  </li>
+</ul>

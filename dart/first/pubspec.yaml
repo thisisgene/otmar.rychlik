@@ -25,9 +25,7 @@ transformers:
     resolved_identifiers:
       BrowserClient: 'package:http/browser_client.dart'
       Client: 'package:http/http.dart'
-    platform_directives: 'package:angular2/common.dart#CORE_DIRECTIVES'
-    entry_points:
-      - 'web/main.dart'
-      - 'web/admin/main.dart'
+    platform_directives: 'package:angular2/common.dart#COMMON_DIRECTIVES'
+
 - dart_to_js_script_rewriter
 

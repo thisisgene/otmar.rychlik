@@ -22,6 +22,8 @@ class FbNoUserService {
   List<Project> projects;
   List<Image> images;
 
+  bool listReady = false;
+
   var uuid = new Uuid();
 
 
@@ -64,6 +66,7 @@ class FbNoUserService {
     if (!val[isDeleted] && val[isVisible]) {
       Project project = new Project(
           val[name],
+          val[urlName],
           val[contentTextMD],
           val[contentTextHtml],
           val[hasParent],
@@ -76,10 +79,25 @@ class FbNoUserService {
           val[isDeleted],
           key);
       await projects.add(project);
-      print(project.name);
 
     }
-//    print(projects);
+
+  }
+
+  Future<Project> getProject(key) async {
+
+    return await projects.firstWhere((project) => project.key == key, orElse: ()=> null );
+
+  }
+
+  Future<List<Project>> getChildren(key) async {
+    List<Project> childProjects = [];
+    await projects.forEach((project) {
+      if(project.parentId == key) {
+        childProjects.add(project);
+      }
+    });
+    return childProjects;
   }
 
 }
