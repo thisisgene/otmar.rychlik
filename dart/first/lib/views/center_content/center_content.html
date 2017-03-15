@@ -22,15 +22,15 @@
 
       <div class="layout-text" *ngIf="project?.layoutClass=='layout_text'" [innerHTML]="project.contentTextHtml"></div>
       <div class="layout-img" *ngIf="project?.layoutClass=='layout_image'">
-        <div *ngIf="fbService.images==null">Huuuasd</div>
-        <ul class="photo-list" *ngIf="fbService.images!=null">
-          <template ngFor let-img [ngForOf]="fbService?.images">
-            <li>
-              <img src="{{img.imgPath}}">
-            </li>
+        <div class="img-list" *ngIf="images!=null">
+          <p>MUdddnu</p>
+          <template ngFor let-img [ngForOf]="images">
+
+            <img id="{{img.imgId}}" src="{{img.imgPath}}">
+
           </template>
 
-        </ul>
+        </div>
 
       </div>
 

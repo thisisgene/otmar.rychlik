@@ -93,3 +93,11 @@ main {
 .layout-text p:first-child {
   margin-top: 0 !important;
 }
+
+.layout-img {}
+.img-list {
+  list-style: none;
+}
+.img-list img {
+  max-width: 350px;
+}

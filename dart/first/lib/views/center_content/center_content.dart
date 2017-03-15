@@ -38,7 +38,7 @@ class CenterContent implements OnInit {
       }
       if (project?.imageList != null) {
         await fbService.getImages(key);
-        print('got img!');
+        images = await fbService.images;
       }
     }
 
