@@ -53,12 +53,13 @@ class FbNoUserService {
     if (user != null) {
       projects = [];
 
-      await _fbRefProjects.onChildAdded.listen(_newProject);
+
     }
 
   }
 
-//  Future<List<Project>> getAllProjects() async {
+  Future<List<Project>> getAllProjects() async {
+    _fbRefProjects.onChildAdded.listen(_newProject);
 //    _fbRefProjects.onValue.listen((fb.QueryEvent event){
 //      fb.DataSnapshot snap = event.snapshot;
 //      snap.forEach((s) {
@@ -89,7 +90,7 @@ class FbNoUserService {
 //    });
 //    print("All $projects");
 //    return(projects);
-//  }
+  }
 
   _newProject(fb.QueryEvent event) {
     String key = event.snapshot.key;
@@ -114,7 +115,6 @@ class FbNoUserService {
       projects.add(project);
 
     }
-    print('hiiiiii $projects');
     listReady = true;
   }
 
@@ -146,43 +146,40 @@ class FbNoUserService {
 
   Future<List<Project>> getChildren(key) async {
     List<Project> childProjects = [];
-//    _fbRefProjects.onValue.listen((fb.QueryEvent event){
-//      fb.DataSnapshot snap = event.snapshot;
-//      snap.forEach((s) {
-//
-//        var val = s.val();
-//        if (val[parentId] == key) {
-//          print(val[name]);
-//          if (!val[isDeleted] && val[isVisible]) {
-//            Project project = new Project(
-//                val[name],
-//                val[urlName],
-//                val[contentTextMD],
-//                val[contentTextHtml],
-//                val[hasParent],
-//                val[parentId],
-//                val[parentName],
-//                val[hasChildren],
-//                val[layoutClass],
-//                val[imageList],
-//                val[lastEdit],
-//                val[isVisible],
-//                val[isDeleted],
-//                key);
-//            childProjects.add(project);
-//          }
-//        }
-//      });
-//
-//
-//      print("Ahoi $childProjects");
-//    });
+
     await projects.forEach((project) {
       if(project.parentId == key) {
         childProjects.add(project);
       }
     });
     return childProjects;
+  }
+
+  Future<List<Image>> getImages(key) async {
+    images = [];
+    _fbRefImages.onValue.listen((fb.QueryEvent event) {
+      fb.DataSnapshot snap = event.snapshot;
+      snap.forEach((s) {
+        var val = s.val();
+        print(val[parentId]);
+        print(key);
+        if (val[imgParent] == key) {
+          print(key);
+          Image image = new Image(
+              val[imgId],
+              val[imgName],
+              val[imgPath],
+              val[imgParent]
+
+          );
+          images.add(image);
+        }
+      });
+      print(images);
+    });
+
+    return(images);
+
   }
 
 }

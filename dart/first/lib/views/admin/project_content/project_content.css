@@ -142,6 +142,7 @@
   background: #fff;
   align-self: stretch;
   max-height: 30px;
+  max-width: 50px;
   margin: .2rem .4rem .2rem .2rem;
 }
 

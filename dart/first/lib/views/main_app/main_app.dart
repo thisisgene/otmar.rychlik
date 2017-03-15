@@ -26,7 +26,7 @@ import 'package:first/services/fb_no_user_service.dart';
   const Route(path: '/site/:key', name: 'Site', component: CenterContent)
 ])
 
-class MainApp {
+class MainApp implements OnInit {
 
 
   Project selectedProject;
@@ -39,5 +39,8 @@ class MainApp {
     selectedProject = project;
   }
 
+  void ngOnInit() {
+    fbService.getAllProjects();
+  }
 
 }

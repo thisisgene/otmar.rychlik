@@ -21,7 +21,18 @@
       </ul>
 
       <div class="layout-text" *ngIf="project?.layoutClass=='layout_text'" [innerHTML]="project.contentTextHtml"></div>
-      <div class="layout-img" *ngIf="project?.layoutClass=='layout_img'" [innerHTML]="project.contentTextHtml"></div>
+      <div class="layout-img" *ngIf="project?.layoutClass=='layout_image'">
+        <div *ngIf="fbService.images==null">Huuuasd</div>
+        <ul class="photo-list" *ngIf="fbService.images!=null">
+          <template ngFor let-img [ngForOf]="fbService?.images">
+            <li>
+              <img src="{{img.imgPath}}">
+            </li>
+          </template>
+
+        </ul>
+
+      </div>
 
     </div>
 
