@@ -84,9 +84,28 @@ class FbNoUserService {
 
   }
 
-  Future<Project> getProject(key) async {
+  Future<Project> getProject(String key) async {
+    Project my_project;
+    await _fbRefProjects.orderByKey().equalTo(key).onChildAdded.listen((fb.QueryEvent event) {
+      var val = event.snapshot.val();
+      my_project = new Project(
+          val[name],
+          val[urlName],
+          val[contentTextMD],
+          val[contentTextHtml],
+          val[hasParent],
+          val[parentId],
+          val[hasChildren],
+          val[layoutClass],
+          val[imageList],
+          val[lastEdit],
+          val[isVisible],
+          val[isDeleted],
+          key);
+      print(my_project.name);
 
-    return await projects.firstWhere((project) => project.key == key, orElse: ()=> null );
+    });
+    return my_project;
 
   }
 

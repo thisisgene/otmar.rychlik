@@ -20,6 +20,7 @@ transformers:
     entry_points:
       - web/main.dart
       - web/admin/main.dart
+      - web/test/main.dart
     platform_pipes:
       - 'package:angular2/common.dart#COMMON_PIPES'
     resolved_identifiers:

@@ -1,9 +1,31 @@
-<h1>Main Content</h1>
-<div *ngIf="project != null">
-  <textarea>{{project.contentTextMD}}</textarea>
+<div class="side-container">
+  <div class="menu-container">
+    <div class="left-content">
+      <template ngFor let-parent [ngFor]="project."
+    </div>
+    <div class="right-content">
+      <ul class="menu-list">
+        <template ngFor let-project [ngForOf]="childProjects">
+
+          <li class="menu-item" id="li{{project.key}}" [ngClass]="project.hasParent ? 'hidden' : ''" [ngClass]="project.hasChildren ? 'has-sub-list' : ''">
+            <div class="main-item">
+              <a id={{project.key}} [routerLink]="['Site', {key: project.key}]" class="project-element main-link" (click)="selectProject(project, project.key)">{{project.name}}</a>
+              <span class="update">{{project.lastEdit}}</span>
+            </div>
+          </li>
+        </template>
+      </ul>
+
+    </div>
+
+  </div>
+
 </div>
-<ul>
-  <li *ngFor="let childProject of childProjects">
-    {{childProject?.name}}
-  </li>
-</ul>
+<!--<div *ngIf="project != null">-->
+  <!--<textarea>{{project.contentTextMD}}</textarea>-->
+<!--</div>-->
+<!--<ul>-->
+  <!--<li *ngFor="let childProject of childProjects">-->
+    <!--{{childProject?.name}}-->
+  <!--</li>-->
+<!--</ul>-->

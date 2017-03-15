@@ -24,6 +24,7 @@ class SideContent {
   Project selectedProject;
 
   final FbNoUserService fbService;
+//  final RouteParams _routeParams;
   SideContent(this.fbService);
 
 

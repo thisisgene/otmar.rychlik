@@ -15,7 +15,7 @@ import '../../services/fb_no_user_service.dart';
     styleUrls: const ['center_content.css'],
     directives: const [ROUTER_DIRECTIVES]
 )
-class CenterContent implements OnInit {
+class CenterContent implements AfterContentInit {
   Project project;
   List<Project> childProjects;
 
@@ -26,13 +26,14 @@ class CenterContent implements OnInit {
   CenterContent(this._fbService, this._routeParams, this._location);
 
 
-  Future<Null> ngOnInit() async {
+  Future ngAfterContentInit() async {
     var key = _routeParams.get('key');
     print(key);
 
     if (key != null) {
-      project = await (_fbService.getProject(key));
-      if (project.hasChildren) {
+      project = await _fbService.getProject(key);
+      print(project);
+      if (project?.hasChildren == true) {
         childProjects = await (_fbService.getChildren(key));
         print(childProjects);
       }

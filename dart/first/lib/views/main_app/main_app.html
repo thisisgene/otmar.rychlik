@@ -1,14 +1,17 @@
 <div id="main-container">
   <app-header></app-header>
   <main *ngIf="fbService.projects != null">
-    <side-content (myEvent)="getId($event)"></side-content>
+    <router-outlet (myEvent)="getId($event)">
+      
+    </router-outlet>
+
     <!--<a [routerLink]="['Site']">Hallo ein Link</a>-->
-    <router-outlet></router-outlet>
+
 
     <!--<center-content [project]="selectedProject"></center-content>-->
   </main>
   <main *ngIf="fbService.projects == null">
-  <p>Ladet noch</p>
+    <p>Ladet noch</p>
   </main>
-  <app-footer><p>ohhlasdl</p></app-footer>
+  <app-footer><p></p></app-footer>
 </div>

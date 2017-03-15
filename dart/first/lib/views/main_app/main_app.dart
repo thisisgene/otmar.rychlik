@@ -21,25 +21,22 @@ import 'package:first/services/fb_no_user_service.dart';
 )
 
 @RouteConfig(const [
+  const Route(path: '/', name: 'Index', component: SideContent),
   const Route(path: '/site/:key', name: 'Site', component: CenterContent)
 ])
 
-class MainApp implements OnInit{
-
-
+class MainApp {
 
 
   Project selectedProject;
 
   final FbNoUserService fbService;
+//  final RouteParams _routeParams;
   MainApp(this.fbService);
 
   void getId(Project project) {
     selectedProject = project;
   }
 
-  void ngOnInit() {
-
-  }
 
 }
