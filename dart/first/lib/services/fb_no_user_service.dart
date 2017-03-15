@@ -48,18 +48,50 @@ class FbNoUserService {
     _fbStorage = fb.storage();
   }
 
-  void _authChanged(fb.AuthEvent event) {
+  Future _authChanged(fb.AuthEvent event) async {
     user = event.user;
     if (user != null) {
       projects = [];
 
-      _fbRefProjects.onChildAdded.listen(_newProject);
-      print('heyhou');
+      await _fbRefProjects.onChildAdded.listen(_newProject);
     }
 
   }
 
-  Future _newProject(fb.QueryEvent event) async {
+//  Future<List<Project>> getAllProjects() async {
+//    _fbRefProjects.onValue.listen((fb.QueryEvent event){
+//      fb.DataSnapshot snap = event.snapshot;
+//      snap.forEach((s) {
+//
+//        var val = s.val();
+//        var key = s.key;
+//        print(val[name]);
+//        if (!val[isDeleted] && val[isVisible]) {
+//          Project project = new Project(
+//              val[name],
+//              val[urlName],
+//              val[contentTextMD],
+//              val[contentTextHtml],
+//              val[hasParent],
+//              val[parentId],
+//              val[parentName],
+//              val[hasChildren],
+//              val[layoutClass],
+//              val[imageList],
+//              val[lastEdit],
+//              val[isVisible],
+//              val[isDeleted],
+//              key);
+//          projects.add(project);
+//        }
+//
+//      });
+//    });
+//    print("All $projects");
+//    return(projects);
+//  }
+
+  _newProject(fb.QueryEvent event) {
     String key = event.snapshot.key;
     var val = event.snapshot.val();
 //    print(val[isDeleted]);
@@ -79,40 +111,72 @@ class FbNoUserService {
           val[isVisible],
           val[isDeleted],
           key);
-      await projects.add(project);
+      projects.add(project);
 
     }
-
+    print('hiiiiii $projects');
+    listReady = true;
   }
 
-  Future<Project> getProject(String key) async {
+  getProject(String key) {
     Project my_project;
-    await _fbRefProjects.orderByKey().equalTo(key).onChildAdded.listen((fb.QueryEvent event) {
-      var val = event.snapshot.val();
-      my_project = new Project(
-          val[name],
-          val[urlName],
-          val[contentTextMD],
-          val[contentTextHtml],
-          val[hasParent],
-          val[parentId],
-          val[parentName],
-          val[hasChildren],
-          val[layoutClass],
-          val[imageList],
-          val[lastEdit],
-          val[isVisible],
-          val[isDeleted],
-          key);
-      print(my_project.name);
-
+//    await _fbRefProjects.child(key).once('value').then((fb.QueryEvent event) {
+//      var val = event.snapshot.val();
+//      my_project = new Project(
+//          val[name],
+//          val[urlName],
+//          val[contentTextMD],
+//          val[contentTextHtml],
+//          val[hasParent],
+//          val[parentId],
+//          val[parentName],
+//          val[hasChildren],
+//          val[layoutClass],
+//          val[imageList],
+//          val[lastEdit],
+//          val[isVisible],
+//          val[isDeleted],
+//          key);
+//    });
+    projects.forEach((project) {
+      if (project.key==key) my_project = project;
     });
-    return my_project;
-
+    return(my_project);
   }
 
   Future<List<Project>> getChildren(key) async {
     List<Project> childProjects = [];
+//    _fbRefProjects.onValue.listen((fb.QueryEvent event){
+//      fb.DataSnapshot snap = event.snapshot;
+//      snap.forEach((s) {
+//
+//        var val = s.val();
+//        if (val[parentId] == key) {
+//          print(val[name]);
+//          if (!val[isDeleted] && val[isVisible]) {
+//            Project project = new Project(
+//                val[name],
+//                val[urlName],
+//                val[contentTextMD],
+//                val[contentTextHtml],
+//                val[hasParent],
+//                val[parentId],
+//                val[parentName],
+//                val[hasChildren],
+//                val[layoutClass],
+//                val[imageList],
+//                val[lastEdit],
+//                val[isVisible],
+//                val[isDeleted],
+//                key);
+//            childProjects.add(project);
+//          }
+//        }
+//      });
+//
+//
+//      print("Ahoi $childProjects");
+//    });
     await projects.forEach((project) {
       if(project.parentId == key) {
         childProjects.add(project);

@@ -24,9 +24,7 @@ class SideContent {
   Project selectedProject;
 
   final FbNoUserService fbService;
-//  final RouteParams _routeParams;
   SideContent(this.fbService);
-
 
 
   @Output() EventEmitter<String> myEvent = new EventEmitter();
@@ -44,9 +42,16 @@ class SideContent {
 
   }
 
-  void goBack() {
-    window.history.back();
-  }
+//  Future getAllProjects() async {
+//    projects = await fbService.getAllProjects();
+////    centerContent.getCurrentProject();
+//  }
+//
+//  void ngOnInit() {
+//    getAllProjects();
+//  }
+
+
 
 }
 

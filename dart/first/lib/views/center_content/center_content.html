@@ -1,12 +1,14 @@
 <div class="side-container">
   <div class="menu-container" *ngIf="project != null">
     <div class="left-content">
-      <p class="top-link" [routerLink]="['Site', {key: project.parentId}]">{{project.parentName}}</p>
+      <p *ngIf="project.hasParent" class="top-link" [routerLink]="['Site', {key: project.parentId}]">{{project.parentName}}</p>
+      <p *ngIf="!project.hasParent" class="top-link" [routerLink]="['Index']"><i class="back-arrow material-icons">keyboard_return</i></p>
       <p class="side-link">{{project.name}}</p>
     </div>
     <div class="right-content">
-      <p class="top-link dummy"></p>
+
       <ul class="menu-list" *ngIf="project.layoutClass=='layout_menu'">
+        <p class="top-link dummy"></p>
         <template ngFor let-project [ngForOf]="childProjects">
 
           <li class="menu-item" id="li{{project.key}}" [ngClass]="project.hasParent ? 'hidden' : ''" [ngClass]="project.hasChildren ? 'has-sub-list' : ''">
@@ -18,7 +20,8 @@
         </template>
       </ul>
 
-      <div *ngIf="project?.layoutClass!='layout_menu'" [innerHTML]="project.contentTextHtml"></div>
+      <div class="layout-text" *ngIf="project?.layoutClass=='layout_text'" [innerHTML]="project.contentTextHtml"></div>
+      <div class="layout-img" *ngIf="project?.layoutClass=='layout_img'" [innerHTML]="project.contentTextHtml"></div>
 
     </div>
 
