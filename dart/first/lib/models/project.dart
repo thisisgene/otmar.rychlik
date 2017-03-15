@@ -6,6 +6,7 @@ const String contentTextMD = "contentTextMD";
 const String contentTextHtml = "contentTextHtml";
 const String hasParent = "hasParent";
 const String parentId = "parentId";
+const String parentName = "parentName";
 const String hasChildren = "hasChildren";
 const String layoutClass = "layoutClass";
 const String imageList = "imageList";
@@ -20,6 +21,7 @@ class Project {
   String contentTextHtml;
   bool hasParent;
   String parentId;
+  String parentName;
   bool hasChildren;
   String layoutClass;
   List<Image> imageList;
@@ -35,6 +37,7 @@ class Project {
     this.contentTextHtml,
     this.hasParent,
     this.parentId,
+    this.parentName,
     this.hasChildren,
     this.layoutClass,
     this.imageList,
@@ -52,6 +55,7 @@ class Project {
     "contentTextHtml": contentTextHtml,
     "hasParent": hasParent,
     "parentId": parentId,
+    "parentName": parentName,
     "hasChildren": hasChildren,
     "layoutClass": layoutClass,
     "imageList": imageList,

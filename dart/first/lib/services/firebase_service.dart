@@ -58,7 +58,7 @@ class FirebaseService {
   void _newProject(fb.QueryEvent event) {
     String key = event.snapshot.key;
     var val = event.snapshot.val();
-    Project project = new Project(val[name], val[urlName], val[contentTextMD], val[contentTextHtml], val[hasParent], val[parentId], val[hasChildren], val[layoutClass], val[imageList], val[lastEdit], val[isVisible], val[isDeleted], key);
+    Project project = new Project(val[name], val[urlName], val[contentTextMD], val[contentTextHtml], val[hasParent], val[parentId], val[parentName], val[hasChildren], val[layoutClass], val[imageList], val[lastEdit], val[isVisible], val[isDeleted], key);
     projects.add(project);
     print(projects.length);
   }
@@ -74,7 +74,7 @@ class FirebaseService {
 
     String currentDate = formatter.format(new DateTime.now());
     try {
-      Project project = new Project(name, urlName, null, null, hasParent, parentId, false, "layout_menu", [], currentDate, true, false);
+      Project project = new Project(name, urlName, null, null, hasParent, parentId, parentName, false, "layout_menu", [], currentDate, true, false);
       await _fbRefProjects.push(project.toMap());
     }
     catch (error) {
@@ -112,13 +112,14 @@ class FirebaseService {
 //    TODO: Updating without refreshing
   }
 
-  Future projectHasChild(String key, bool doesIt) async {
+  Future projectHasChild(String key, bool doesIt, subName, bool hasParent, String parentKey, String parentName) async {
     try {
       await _fbRefProjects.child(key).update({
         "hasChildren" : doesIt
 
       });
       print(doesIt);
+      addProject(subName, hasParent, parentKey, parentName);
     } catch (e) {
       print(e);
     }

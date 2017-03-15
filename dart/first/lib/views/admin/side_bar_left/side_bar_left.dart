@@ -97,7 +97,7 @@ class SideBarLeft implements OnInit {
 
   }
 
-  addSubProject(Project project, Event e) {
+  Future addSubProject(Project project, Event e) async {
     if (!subInputExist) {
       String subName;
       Element thisElement = e.target;
@@ -114,8 +114,9 @@ class SideBarLeft implements OnInit {
         subName = nameInput.value;
         if (e.keyCode == KeyCode.ENTER) {
           if (subName!='') {
-            fbService.addProject(subName, true, project.key, project.name);
-            fbService.projectHasChild(project.key, true);
+
+//            fbService.addProject();
+            fbService.projectHasChild(project.key, true, subName, true, project.key, project.name);
             nameInput.remove();
           }
         }
