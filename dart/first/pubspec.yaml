@@ -9,6 +9,7 @@ dependencies:
   http: ^0.11.0
   stream_transformers: ^0.3.0
   firebase: ^3.0.0
+#  mongo_dart: ^0.2.10
   markdown: ^0.11.2
   uuid: ^0.5.3
   intl: ^0.14.0

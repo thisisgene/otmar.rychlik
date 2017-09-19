@@ -10,6 +10,7 @@ import 'package:first/views/center_content/center_content.dart';
 import 'package:first/views/spinner/spinner.dart';
 import 'package:first/models/project.dart';
 import 'package:first/services/fb_no_user_service.dart';
+import 'package:first/services/db_service.dart';
 
 
 
@@ -18,7 +19,7 @@ import 'package:first/services/fb_no_user_service.dart';
     selector: 'main-app',
     styleUrls: const ['main_app.css'],
     directives: const [ROUTER_DIRECTIVES, AppHeader, SideContent, Spinner],
-    providers: const [FbNoUserService]
+    providers: const [FbNoUserService, DbService]
 )
 
 @RouteConfig(const [
@@ -32,6 +33,7 @@ class MainApp implements OnInit {
   Project selectedProject;
 
   final FbNoUserService fbService;
+//  final DbService dbService;
 //  final RouteParams _routeParams;
   MainApp(this.fbService);
 
@@ -39,8 +41,11 @@ class MainApp implements OnInit {
     selectedProject = project;
   }
 
-  void ngOnInit() {
+  Future ngOnInit() async {
     fbService.getAllProjects();
+    print('huuuu');
+//    var abi = await dbService.initDb();
+//    print(abi);
   }
 
 }

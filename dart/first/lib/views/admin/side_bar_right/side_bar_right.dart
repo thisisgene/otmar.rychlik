@@ -26,7 +26,7 @@ class SideBarRight implements AfterViewInit {
   final MainApp mainApp;
   final SideBarLeft sideBarLeft;
 
-  String layoutClass = 'layout_img';
+  String layoutClass = 'layout_menu';
   bool projectVisible = true;
 
 

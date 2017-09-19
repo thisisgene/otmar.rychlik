@@ -4,6 +4,9 @@
       <p *ngIf="project.hasParent" class="top-link" [routerLink]="['Site', {key: project.parentId}]">{{project.parentName}}</p>
       <p *ngIf="!project.hasParent" class="top-link" [routerLink]="['Index']"><i class="back-arrow material-icons">keyboard_return</i></p>
       <p class="side-link">{{project.name}}</p>
+      <div class="layout-img-content" *ngIf="project?.layoutClass=='layout_image'" [innerHTML]="project.contentTextHtml">
+    </div>
+
     </div>
     <div class="right-content">
 
@@ -23,7 +26,7 @@
       <div class="layout-text" *ngIf="project?.layoutClass=='layout_text'" [innerHTML]="project.contentTextHtml"></div>
       <div class="layout-img" *ngIf="project?.layoutClass=='layout_image'">
         <div class="img-list" *ngIf="images!=null">
-          <p>MUdddnu</p>
+          <p class="top-link dummy"></p>
           <template ngFor let-img [ngForOf]="images">
 
             <img id="{{img.imgId}}" src="{{img.imgPath}}">

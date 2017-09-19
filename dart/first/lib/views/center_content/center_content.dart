@@ -9,7 +9,7 @@ import 'package:first/models/project.dart';
 import 'package:first/models/image.dart';
 import 'package:first/services/fb_no_user_service.dart';
 
-import '../../services/fb_no_user_service.dart';
+//import '../../services/fb_no_user_service.dart';
 
 @Component(selector: 'center-content',
     templateUrl: 'center_content.html',

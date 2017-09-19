@@ -5,7 +5,7 @@ main {
 
 .menu-container {
   max-width: 100%;
-  width: 100%;
+  width: 100vw;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -13,13 +13,19 @@ main {
   padding: .2rem;
   margin: 0;
 }
+@media(max-width: 750px) {
+  .menu-container {
+    display: block;
+  }
+}
 
 .left-content {
   position: relative;
   width: 33%;
+  min-width: 350px;
 }
 .right-content {
-  width: 66%;
+  /*width: 66%;*/
   padding-right: 2rem;
 }
 
@@ -100,4 +106,5 @@ main {
 }
 .img-list img {
   max-width: 350px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, .3);
 }

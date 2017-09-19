@@ -1,0 +1,4 @@
+db.createUser( { user: "accountAdmin",
+                 pwd: "sVr!sf_6D2d-7zzMP@zR~cMd",
+                 roles: [ "readWrite", "dbAdmin" ]
+                 })

@@ -12,6 +12,7 @@ import 'package:first/models/tooltip.dart';
 
 import 'package:first/services/tooltip_service.dart';
 import 'package:first/services/firebase_service.dart';
+//import 'package:first/services/db_service.dart';
 
 @Component(
     templateUrl: 'main_app.html',
@@ -21,7 +22,7 @@ import 'package:first/services/firebase_service.dart';
     providers: const [FirebaseService, TooltipService]
 )
 
-class MainApp implements AfterViewInit {
+class MainApp implements OnInit {
 
   Project selectedProject;
 
@@ -61,6 +62,7 @@ class MainApp implements AfterViewInit {
   }
 
   final FirebaseService fbService;
+//  final DbService dbService;
   final TooltipService tooltipService;
   MainApp(FirebaseService this.fbService, TooltipService this.tooltipService);
 
@@ -70,7 +72,7 @@ class MainApp implements AfterViewInit {
     print(tooltips);
   }
 //
-  void ngAfterViewInit() {
+  Future ngOnInit() async {
 
   }
 

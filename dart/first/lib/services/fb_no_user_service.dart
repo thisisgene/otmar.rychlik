@@ -3,6 +3,8 @@ import 'dart:async';
 
 import 'package:angular2/core.dart';
 import 'package:firebase/firebase.dart' as fb;
+import 'package:first/services/firebase_init.dart';
+
 import 'package:uuid/uuid.dart';
 
 import 'package:first/models/project.dart';
